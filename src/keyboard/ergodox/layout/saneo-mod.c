@@ -25,23 +25,23 @@ const uint8_t PROGMEM _kb_layout[KB_LAYERS][KB_ROWS][KB_COLUMNS] = {
 // unused
 0,
 // left hand
-_0,     	_1,     	_2,     	_3,     	_4,    	_5,         	_6,
-0,      	_Q,     	_W,     	_E,     	_R,    	_T,         	0,
-1,      	_A,     	_S,     	_D,     	_F,    	_G,
-_shiftL,	_Z,     	_X  ,   	_C,     	_V,    	_B,         	0,
-_arrowL,	_arrowU,	_arrowD,	_arrowR,	_guiL, 	
-        	        	        	        	       	_scrollLock,	0,
-        	        	        	        	0,     	0,          	0,
-        	        	        	        	_space,	_ctrlL,     	_altL,
+_0,     	_1,     	_2,     	_3,        	_4,    	_5,         	_6,
+0,      	_X,     	_V,     	_L,        	_C,    	_W,         	0,
+1,      	_U,     	_I,     	_A,        	_E,    	_O,
+_shiftL,	_5,     	_8  ,   	_semicolon,	_P,    	_Z,         	0,
+_arrowL,	_arrowU,	_arrowD,	_arrowR,   	_guiL, 	
+        	        	        	           	       	_scrollLock,	0,
+        	        	        	           	0,     	0,          	0,
+        	        	        	           	_space,	_ctrlL,     	_altL,
 // right hand
-_5,   	_6,	_7,       	_8,    	_9,     	_0,        	0,
-0,    	_Y,	_U,       	_I,    	_O,     	_P,        	_bracketL,
-      	_H,	_J,       	_K,    	_L,     	_semicolon,	1,
-0,    	_N,	_M,       	_comma,	_period,	_slash,    	_shiftL,
-      	   	2,        	0,     	0,      	0,         	0,
-0,    	0, 	
-0,    	0, 	0,
-_menu,	2, 	_shiftR ),
+_5,   	_6,   	_7, 	_8,	_9,	_0,        	0,
+0,    	_K,   	_H, 	_G,	_F,	_Q,        	_bracketL,
+      	_S,   	_N, 	_R,	_T,	_D,        	1,
+0,    	_B,   	_M, 	_J,	_Y,	_semicolon,	_shiftR,
+      	      	2,  	0, 	0, 	0,         	0,
+0,    	0,    	
+0,    	0,    	0,
+_altR,	_altR,	1 ),
 
 
 	KB_MATRIX_LAYER(  // layout: layer 1: function and symbol keys
@@ -126,23 +126,12 @@ _F12,	_F6,   	_F7,    	_F8,   	_F9,      	_F10,   	0,
 #define  lpush1   &kbfun_layer_push_1
 #define  lpush2   &kbfun_layer_push_2
 #define  lpush3   &kbfun_layer_push_3
-#define  lpush4   &kbfun_layer_push_4
-#define  lpush5   &kbfun_layer_push_5
-#define  lpush6   &kbfun_layer_push_6
-#define  lpush7   &kbfun_layer_push_7
-#define  lpush8   &kbfun_layer_push_8
-#define  lpush9   &kbfun_layer_push_9
-#define  lpush10  &kbfun_layer_push_10
 #define  lpop1    &kbfun_layer_pop_1
 #define  lpop2    &kbfun_layer_pop_2
 #define  lpop3    &kbfun_layer_pop_3
-#define  lpop4    &kbfun_layer_pop_4
-#define  lpop5    &kbfun_layer_pop_5
-#define  lpop6    &kbfun_layer_pop_6
-#define  lpop7    &kbfun_layer_pop_7
-#define  lpop8    &kbfun_layer_pop_8
-#define  lpop9    &kbfun_layer_pop_9
-#define  lpop10   &kbfun_layer_pop_10
+#define  latch1   &kbfun_layer_sticky_1
+#define  latch2   &kbfun_layer_sticky_2
+#define  latch3   &kbfun_layer_sticky_3
 // ---
 
 // device
@@ -165,8 +154,8 @@ NULL,
 // left hand
  kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
  kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
- lpush1, kprrel, kprrel, kprrel, kprrel, kprrel,
- s2kcap, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
+ latch1, kprrel, kprrel, kprrel, kprrel, kprrel,
+ s2kcap,sshprre,sshprre,sshprre, kprrel, kprrel, kprrel,
  kprrel, kprrel, kprrel, kprrel, kprrel,
                                                  kprrel, kprrel,
                                            NULL,   NULL, kprrel,
@@ -174,12 +163,12 @@ NULL,
 // right hand
          kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
          kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
-                 kprrel, kprrel, kprrel, kprrel, kprrel, lpush1,
+                 kprrel, kprrel, kprrel, kprrel, kprrel, latch1,
          kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, s2kcap,
                          lpush2, kprrel, kprrel, kprrel, kprrel,
  kprrel, kprrel,
  kprrel,   NULL,   NULL,
- kprrel, lpush2, kprrel ),
+ kprrel, kprrel, latch1 ),
 
 
 	KB_MATRIX_LAYER(  // press: layer 1: function and symbol keys
@@ -187,9 +176,9 @@ NULL,
 NULL,
 // left hand
  kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
-kprrel,sshprre, kprrel, kprrel,sshprre, kprrel, kprrel,
-kprrel, kprrel,sshprre,sshprre,sshprre,sshprre,
-ktrans, kprrel,sshprre,sshprre, kprrel,sshprre, kprrel,
+ kprrel,sshprre, kprrel, kprrel,sshprre, kprrel, kprrel,
+ kprrel, kprrel,sshprre,sshprre,sshprre,sshprre,
+ ktrans, kprrel,sshprre,sshprre, kprrel,sshprre, kprrel,
  ktrans, kprrel, kprrel, kprrel, kprrel,
                                                  kprrel, kprrel,
                                          kprrel, kprrel, kprrel,
@@ -263,8 +252,8 @@ NULL,
 // left hand
  kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
  kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
-  lpop1, kprrel, kprrel, kprrel, kprrel, kprrel,
- s2kcap, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
+ latch1, kprrel, kprrel, kprrel, kprrel, kprrel,
+ s2kcap,sshprre,sshprre,sshprre, kprrel, kprrel, kprrel,
  kprrel, kprrel, kprrel, kprrel, kprrel,
                                                  kprrel, kprrel,
                                            NULL,   NULL, kprrel,
@@ -272,12 +261,12 @@ NULL,
 // right hand
           NULL, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
         kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, kprrel,
-                kprrel, kprrel, kprrel, kprrel, kprrel, lpop1,
+                kprrel, kprrel, kprrel, kprrel, kprrel, latch1,
         kprrel, kprrel, kprrel, kprrel, kprrel, kprrel, s2kcap,
                         lpop2, kprrel, kprrel, kprrel, kprrel,
  kprrel, kprrel,
  kprrel,   NULL,   NULL,
- kprrel,  lpop2, kprrel ),
+ kprrel,  lpop2, latch1 ),
 
 
 	KB_MATRIX_LAYER(  // release: layer 1: function and symbol keys
@@ -347,22 +336,5 @@ kprrel,
  ktrans, ktrans,
  ktrans, ktrans, ktrans,
  ktrans, ktrans, kprrel ),
-
-
-	KB_MATRIX_LAYER(  // release: layer 3: nothing (just making sure unused
-			  // functions don't get compiled out)
-// unused
-NULL,
-// other
- kprrel, lpush8,  lpop8,   NULL,   NULL,   NULL,   NULL,   NULL,
-   ktog, lpush9,  lpop9,   NULL,   NULL,   NULL,   NULL,   NULL,
- ktrans,lpush10, lpop10,   NULL,   NULL,   NULL,   NULL,   NULL,
- lpush1,  lpop1,   NULL,   NULL,   NULL,   NULL,   NULL,   NULL,
- lpush2,  lpop2, dbtldr,   NULL,   NULL,   NULL,   NULL,   NULL,
- lpush3,  lpop3,   NULL,   NULL,   NULL,   NULL,   NULL,   NULL,
- lpush4,  lpop4, s2kcap,   NULL,   NULL,   NULL,   NULL,   NULL,
- lpush5,  lpop5,slpunum,   NULL,   NULL,   NULL,   NULL,   NULL,
- lpush6,  lpop6,slponum,   NULL,   NULL,   NULL,   NULL,   NULL,
- lpush7,  lpop7,   NULL,   NULL,   NULL,   NULL,   NULL,   NULL )
 
 };
