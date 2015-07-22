@@ -266,7 +266,7 @@ NULL,
                         lpop2, kprrel, kprrel, kprrel, kprrel,
  kprrel, kprrel,
  kprrel,   NULL,   NULL,
- kprrel,  lpop2, latch1 ),
+ kprrel, kprrel, latch1 ),
 
 
 	KB_MATRIX_LAYER(  // release: layer 1: function and symbol keys
