@@ -55,7 +55,7 @@ _F11,	_F1,   	_F2,      	_F3,       	_F4,   	_F5,       	_F6,
 0,   	0,     	0,        	0,         	0,     	           	
      	       	          	           	       	0,         	0,
      	       	          	           	0,     	0,         	0,
-     	       	          	           	0,     	0,         	0,
+     	       	          	           	_space,	0,         	0,
 // right hand
 _F5,	_F6,   	_F7,    	_F8,   	_F9,      	_F10,   	_F12,
 0,  	_equal,	_period,	_quote,	_bracketR,	_grave, 	0,   	
