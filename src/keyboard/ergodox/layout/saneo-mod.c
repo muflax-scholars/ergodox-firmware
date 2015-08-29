@@ -134,9 +134,6 @@ _F5,	_F6,	_F7,	_F8,	_F9,	_F10,	_F12,
 #define  latch3   &kbfun_layer_sticky_3
 // ---
 
-// device
-#define  dbtldr  &kbfun_jump_to_bootloader
-
 // special
 #define  sshprre  &kbfun_shift_press_release
 #define  s2kcap   &kbfun_2_keys_capslock_press_release
