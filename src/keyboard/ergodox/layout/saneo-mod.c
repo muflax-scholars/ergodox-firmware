@@ -34,14 +34,14 @@ _arrowL,	_arrowU,	_arrowD,	_arrowR,   	_guiL,
         	        	        	           	_space,	_ctrlL,     	_altL,
         	        	        	           	_space,	_ctrlL,     	_altL,
 // right hand
-_5,          	_6,          	_7, 	_8,     	_9,     	_0,        	0,
-0,           	_K,          	_H, 	_G,     	_F,     	_Q,        	_Q,
-             	_S,          	_N, 	_R,     	_T,     	_D,        	_altR,
-_enter,      	_B,          	_M, 	_J,     	_Y,     	_semicolon,	_shiftR,
-             	             	2,  	_arrowL,	_arrowU,	_arrowD,   	_arrowR,
-0,           	0,           	
-_application,	_application,	1,
-_application,	_application,	1 ),
+_5,          	_6,   	_7, 	_8,     	_9,     	_0,        	_0,
+0,           	_K,   	_H, 	_G,     	_F,     	_Q,        	_Q,
+             	_S,   	_N, 	_R,     	_T,     	_D,        	_altR,
+_enter,      	_B,   	_M, 	_J,     	_Y,     	_semicolon,	_shiftR,
+             	      	2,  	_arrowL,	_arrowU,	_arrowD,   	_arrowR,
+0,           	0,    	
+_application,	_altL,	1,
+_application,	_altL,	1 ),
 
 
 	KB_MATRIX_LAYER(  // layout: layer 1: function and symbol keys
