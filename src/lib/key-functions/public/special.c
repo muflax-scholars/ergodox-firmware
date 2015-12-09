@@ -45,6 +45,19 @@ void kbfun_shift_press_release(void) {
 
 /*
  * [name]
+ *   Control + press|release
+ *
+ * [description]
+ *   Generate a 'control' press or release before the normal keypress or
+ *   keyrelease
+ */
+void kbfun_control_press_release(void) {
+	_kbfun_press_release(IS_PRESSED, KEY_LeftControl);
+	kbfun_press_release();
+}
+
+/*
+ * [name]
  *   Two keys => capslock
  *
  * [description]
@@ -163,4 +176,3 @@ void kbfun_mediakey_press_release(void) {
 
 /* ----------------------------------------------------------------------------
  * ------------------------------------------------------------------------- */
-
