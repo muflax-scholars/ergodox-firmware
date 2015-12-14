@@ -133,6 +133,7 @@ class Key
     "#"          	=> "KEY_3_Pound",
     #            	
     "enter"      	=> "KEY_ReturnEnter",
+    "return"     	=> "KEY_ReturnEnter",
     "space"      	=> "KEY_Spacebar",
     "tab"        	=> "KEY_Tab",
     "backspace"  	=> "KEY_DeleteBackspace",
