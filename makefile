@@ -2,20 +2,15 @@
 # makefile for the ergoDOX project
 # -----------------------------------------------------------------------------
 
-# directories
-BUILD := build
-ROOT := $(BUILD)/$(TARGET)
-SCRIPTS := build-scripts
-
-# -----------------------------------------------------------------------------
-# -----------------------------------------------------------------------------
-
-.PHONY: all clean firmware
+.PHONY: all clean firmware layout
 
 all: firmware
 
 clean:
 	cd src; $(MAKE) clean
 
-firmware: clean
+firmware: clean layout
 	cd src; $(MAKE) all
+
+layout:
+	./generate_layout.rb
