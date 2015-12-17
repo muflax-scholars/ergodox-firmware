@@ -164,6 +164,8 @@ class Key
     "mod3"       	=> "1",
     "mod4"       	=> "2",
     "mod5"       	=> "3",
+    #            	
+    "NULL"       	=> "NULL",
   }
 
   def initialize layers
@@ -340,12 +342,12 @@ keys = [
   #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
   %w{	menu        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	mod3        	latch_mod3	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
+  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	      	}, %w{	NULL	    	},
   #  	thumb-home  	          	      	    	       	      	         	      	      	    	    	  	
   #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
   %w{	menu        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	mod3        	latch_mod3	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
+  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	      	}, %w{	NULL	    	},
 
 ].each_slice(Key::Layers.size).map do |layers|
   Key.new layers

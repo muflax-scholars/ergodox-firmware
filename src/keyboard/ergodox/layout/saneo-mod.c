@@ -504,10 +504,10 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_transparent,
-&kbfun_transparent),
+&kbfun_press_release),
 
 KB_MATRIX_LAYER(
 &kbfun_transparent,
@@ -587,10 +587,10 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_transparent,
-&kbfun_transparent),
+&kbfun_press_release),
 
 KB_MATRIX_LAYER(
 &kbfun_transparent,
@@ -670,10 +670,10 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_transparent,
-&kbfun_transparent),
+&kbfun_press_release),
  };
 const void_funptr_t PROGMEM _kb_layout_release[KB_LAYERS][KB_ROWS][KB_COLUMNS] = { KB_MATRIX_LAYER(
 &kbfun_transparent,
@@ -836,10 +836,10 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_transparent,
-&kbfun_transparent),
+&kbfun_press_release),
 
 KB_MATRIX_LAYER(
 &kbfun_transparent,
@@ -919,10 +919,10 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_transparent,
-&kbfun_transparent),
+&kbfun_press_release),
 
 KB_MATRIX_LAYER(
 &kbfun_transparent,
@@ -1002,8 +1002,8 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_transparent,
-&kbfun_transparent),
+&kbfun_press_release),
    };
