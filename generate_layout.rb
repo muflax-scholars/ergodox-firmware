@@ -250,7 +250,7 @@ keys = [
   %w{	l           	          	}, %w{	'   	       	}, %w{	enter    	      	}, %w{	    	    	},
   %w{	c           	          	}, %w{	<   	shifted	}, %w{	delete   	      	}, %w{	    	    	},
   %w{	w           	          	}, %w{	\\  	       	}, %w{	insert   	      	}, %w{	    	    	},
-  %w{	            	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
+  %w{	tab         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
   #  	home        	          	      	    	       	      	         	      	      	    	    	  	
   #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
   %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
