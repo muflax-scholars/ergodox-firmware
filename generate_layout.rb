@@ -229,125 +229,125 @@ HEADER
 end
 
 keys = [
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	
-  %w{	            	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# dummy key
-  #  	            	          	      	    	       	      	         	      	      	    	    	  	
-  #  	left hand   	          	      	    	       	      	         	      	      	    	    	  	
-  #  	number      	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	0           	          	}, %w{	f11 	       	}, %w{	f11      	      	}, %w{	f11 	    	},	# 1.5
-  %w{	1           	          	}, %w{	f1  	       	}, %w{	f1       	      	}, %w{	f1  	    	},
-  %w{	2           	          	}, %w{	f2  	       	}, %w{	f2       	      	}, %w{	f2  	    	},
-  %w{	3           	          	}, %w{	f3  	       	}, %w{	f3       	      	}, %w{	f3  	    	},
-  %w{	4           	          	}, %w{	f4  	       	}, %w{	f4       	      	}, %w{	f4  	    	},
-  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	      	}, %w{	f5  	    	},
-  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	      	}, %w{	f6  	    	},
-  #  	top         	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	      	}, %w{	    	    	},	# 1.5
-  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	      	}, %w{	    	    	},
-  %w{	v           	          	}, %w{	[   	       	}, %w{	backspace	      	}, %w{	    	    	},
-  %w{	l           	          	}, %w{	'   	       	}, %w{	enter    	      	}, %w{	    	    	},
-  %w{	c           	          	}, %w{	<   	shifted	}, %w{	delete   	      	}, %w{	    	    	},
-  %w{	w           	          	}, %w{	\\  	       	}, %w{	insert   	      	}, %w{	    	    	},
-  %w{	tab         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  #  	home        	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  %w{	u           	          	}, %w{	,   	       	}, %w{	left     	      	}, %w{	    	    	},
-  %w{	i           	          	}, %w{	\{  	shifted	}, %w{	up       	      	}, %w{	    	    	},
-  %w{	a           	          	}, %w{	?   	shifted	}, %w{	down     	      	}, %w{	    	    	},
-  %w{	e           	          	}, %w{	!   	shifted	}, %w{	right    	      	}, %w{	    	    	},
-  %w{	o           	          	}, %w{	(   	shifted	}, %w{	tab      	      	}, %w{	    	    	},
-  #  	bottom      	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	shift_l     	capslock  	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  %w{	%           	shifted   	}, %w{	`   	       	}, %w{	home     	      	}, %w{	    	    	},
-  %w{	*           	shifted   	}, %w{	^   	shifted	}, %w{	page_up  	      	}, %w{	    	    	},
-  %w{	:           	shifted   	}, %w{	|   	shifted	}, %w{	page_down	      	}, %w{	    	    	},
-  %w{	p           	          	}, %w{	-   	       	}, %w{	end      	      	}, %w{	    	    	},
-  %w{	z           	          	}, %w{	@   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	enter       	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  #  	underbottom 	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	left        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	up          	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	down        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	right       	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	win         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  #  	thumb-top   	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  #  	thumb-double	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	space       	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	control     	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  #  	thumb-home  	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	space       	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	control     	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  #  	            	          	      	    	       	      	         	      	      	    	    	  	
-  #  	right hand  	          	      	    	       	      	         	      	      	    	    	  	
-  #  	            	          	      	    	       	      	         	      	      	    	    	  	
-  #  	number      	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	      	}, %w{	f5  	    	},	# 1.5
-  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	      	}, %w{	f6  	    	},
-  %w{	7           	          	}, %w{	f7  	       	}, %w{	f7       	      	}, %w{	f7  	    	},
-  %w{	8           	          	}, %w{	f8  	       	}, %w{	f8       	      	}, %w{	f8  	    	},
-  %w{	9           	          	}, %w{	f9  	       	}, %w{	f9       	      	}, %w{	f9  	    	},
-  %w{	0           	          	}, %w{	f10 	       	}, %w{	f10      	      	}, %w{	f10 	    	},
-  %w{	0           	          	}, %w{	f12 	       	}, %w{	f12      	      	}, %w{	f12 	    	},
-  #  	top         	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	            	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  %w{	k           	          	}, %w{	=   	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	h           	          	}, %w{	>   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	g           	          	}, %w{	"   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	f           	          	}, %w{	]   	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	q           	          	}, %w{	`   	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	q           	          	}, %w{	`   	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  #  	home        	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	s           	          	}, %w{	)   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	n           	          	}, %w{	_   	shifted	}, %w{	backspace	ctrled	}, %w{	    	    	},
-  %w{	r           	          	}, %w{	/   	       	}, %w{	delete   	ctrled	}, %w{	    	    	},
-  %w{	t           	          	}, %w{	\}  	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	d           	          	}, %w{	.   	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  #  	bottom      	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	enter       	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  %w{	b           	          	}, %w{	+   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	m           	          	}, %w{	$   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	j           	          	}, %w{	&   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	y           	          	}, %w{	#   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	;           	          	}, %w{	^   	shifted	}, %w{	         	      	}, %w{	    	    	},
-  %w{	shift_r     	capslock  	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},	# 1.5
-  #  	underbottom 	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	mod4        	mod4      	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	left        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	up          	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	down        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	right       	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  #  	thumb-top   	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	            	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	            	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  #  	thumb-double	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	menu        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	      	}, %w{	NULL	    	},
-  #  	thumb-home  	          	      	    	       	      	         	      	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type  	      	mod5	type	  	
-  %w{	menu        	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	      	}, %w{	    	    	},
-  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	      	}, %w{	NULL	    	},
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# dummy key
+  #  	            	          	      	    	       	      	         	    	      	    	    	  	
+  #  	left hand   	          	      	    	       	      	         	    	      	    	    	  	
+  #  	number      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	0           	          	}, %w{	f11 	       	}, %w{	f11      	    	}, %w{	f11 	    	},	# 1.5
+  %w{	1           	          	}, %w{	f1  	       	}, %w{	f1       	    	}, %w{	f1  	    	},
+  %w{	2           	          	}, %w{	f2  	       	}, %w{	f2       	    	}, %w{	f2  	    	},
+  %w{	3           	          	}, %w{	f3  	       	}, %w{	f3       	    	}, %w{	f3  	    	},
+  %w{	4           	          	}, %w{	f4  	       	}, %w{	f4       	    	}, %w{	f4  	    	},
+  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},
+  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
+  #  	top         	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},	# 1.5
+  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},
+  %w{	v           	          	}, %w{	[   	       	}, %w{	backspace	    	}, %w{	    	    	},
+  %w{	l           	          	}, %w{	'   	       	}, %w{	enter    	    	}, %w{	    	    	},
+  %w{	c           	          	}, %w{	<   	shifted	}, %w{	delete   	    	}, %w{	    	    	},
+  %w{	w           	          	}, %w{	\\  	       	}, %w{	insert   	    	}, %w{	    	    	},
+  %w{	tab         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	home        	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	u           	          	}, %w{	,   	       	}, %w{	left     	    	}, %w{	    	    	},
+  %w{	i           	          	}, %w{	\{  	shifted	}, %w{	up       	    	}, %w{	    	    	},
+  %w{	a           	          	}, %w{	?   	shifted	}, %w{	down     	    	}, %w{	    	    	},
+  %w{	e           	          	}, %w{	!   	shifted	}, %w{	right    	    	}, %w{	    	    	},
+  %w{	o           	          	}, %w{	(   	shifted	}, %w{	tab      	    	}, %w{	    	    	},
+  #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	shift_l     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	%           	shifted   	}, %w{	`   	       	}, %w{	home     	    	}, %w{	    	    	},
+  %w{	*           	shifted   	}, %w{	^   	shifted	}, %w{	page_up  	    	}, %w{	    	    	},
+  %w{	:           	shifted   	}, %w{	|   	shifted	}, %w{	page_down	    	}, %w{	    	    	},
+  %w{	p           	          	}, %w{	-   	       	}, %w{	end      	    	}, %w{	    	    	},
+  %w{	z           	          	}, %w{	@   	shifted	}, %w{	         	    	}, %w{	    	    	},
+  %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	win         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	            	          	      	    	       	      	         	    	      	    	    	  	
+  #  	right hand  	          	      	    	       	      	         	    	      	    	    	  	
+  #  	            	          	      	    	       	      	         	    	      	    	    	  	
+  #  	number      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},	# 1.5
+  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
+  %w{	7           	          	}, %w{	f7  	       	}, %w{	f7       	    	}, %w{	f7  	    	},
+  %w{	8           	          	}, %w{	f8  	       	}, %w{	f8       	    	}, %w{	f8  	    	},
+  %w{	9           	          	}, %w{	f9  	       	}, %w{	f9       	    	}, %w{	f9  	    	},
+  %w{	0           	          	}, %w{	f10 	       	}, %w{	f10      	    	}, %w{	f10 	    	},
+  %w{	0           	          	}, %w{	f12 	       	}, %w{	f12      	    	}, %w{	f12 	    	},
+  #  	top         	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	k           	          	}, %w{	=   	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	h           	          	}, %w{	>   	shifted	}, %w{	f21      	    	}, %w{	    	    	},
+  %w{	g           	          	}, %w{	"   	shifted	}, %w{	f22      	    	}, %w{	    	    	},
+  %w{	f           	          	}, %w{	]   	       	}, %w{	f23      	    	}, %w{	    	    	},
+  %w{	q           	          	}, %w{	`   	       	}, %w{	f24      	    	}, %w{	    	    	},
+  %w{	q           	          	}, %w{	`   	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	home        	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	s           	          	}, %w{	)   	shifted	}, %w{	         	    	}, %w{	    	    	},
+  %w{	n           	          	}, %w{	_   	shifted	}, %w{	f13      	    	}, %w{	    	    	},
+  %w{	r           	          	}, %w{	/   	       	}, %w{	f14      	    	}, %w{	    	    	},
+  %w{	t           	          	}, %w{	\}  	shifted	}, %w{	f15      	    	}, %w{	    	    	},
+  %w{	d           	          	}, %w{	.   	       	}, %w{	f16      	    	}, %w{	    	    	},
+  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	b           	          	}, %w{	+   	shifted	}, %w{	         	    	}, %w{	    	    	},
+  %w{	m           	          	}, %w{	$   	shifted	}, %w{	f17      	    	}, %w{	    	    	},
+  %w{	j           	          	}, %w{	&   	shifted	}, %w{	f18      	    	}, %w{	    	    	},
+  %w{	y           	          	}, %w{	#   	shifted	}, %w{	f19      	    	}, %w{	    	    	},
+  %w{	;           	          	}, %w{	^   	shifted	}, %w{	f20      	    	}, %w{	    	    	},
+  %w{	shift_r     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	mod4        	mod4      	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	    	}, %w{	NULL	    	},
+  #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	    	}, %w{	NULL	    	},
 
 ].each_slice(Key::Layers.size).map do |layers|
   Key.new layers
