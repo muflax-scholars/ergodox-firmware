@@ -328,12 +328,12 @@ keys_string =<<EOL
  	┃	    		┃	   		 	    	          	# funk 	
 #	┰	c2  		┰	b2*		┰	a2* 	          	#      	
  	┃	menu		┃	alt		┃	mod3	latch_mod3	# basic	
- 	┃	    		┃	   		┃	NULL	          	# pun  	
+ 	┃	    		┃	   		┃	mod3	mod3      	# pun  	
  	┃	    		┃	   		┃	NULL	          	# nav  	
  	┃	    		┃	   		┃	NULL	          	# funk 	
 #	┰	c1  		┰	b1 		┰	a1  	          	#      	
  	┃	menu		┃	alt		┃	mod3	latch_mod3	# basic	
- 	┃	    		┃	   		┃	NULL	          	# pun  	
+ 	┃	    		┃	   		┃	mod3	mod3      	# pun  	
  	┃	    		┃	   		┃	NULL	          	# nav  	
  	┃	    		┃	   		┃	NULL	          	# funk 	]
 EOL
