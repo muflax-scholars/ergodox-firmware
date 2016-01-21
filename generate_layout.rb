@@ -304,28 +304,28 @@ keys = [
   #  	top         	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
   %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  %w{	k           	          	}, %w{	=   	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	h           	          	}, %w{	>   	shifted	}, %w{	f21      	    	}, %w{	    	    	},
-  %w{	g           	          	}, %w{	"   	shifted	}, %w{	f22      	    	}, %w{	    	    	},
-  %w{	f           	          	}, %w{	]   	       	}, %w{	f23      	    	}, %w{	    	    	},
-  %w{	q           	          	}, %w{	`   	       	}, %w{	f24      	    	}, %w{	    	    	},
-  %w{	q           	          	}, %w{	`   	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	k           	          	}, %w{	=   	       	}, %w{	9        	    	}, %w{	    	    	},
+  %w{	h           	          	}, %w{	>   	shifted	}, %w{	5        	    	}, %w{	    	    	},
+  %w{	g           	          	}, %w{	"   	shifted	}, %w{	6        	    	}, %w{	    	    	},
+  %w{	f           	          	}, %w{	]   	       	}, %w{	7        	    	}, %w{	    	    	},
+  %w{	q           	          	}, %w{	`   	       	}, %w{	8        	    	}, %w{	    	    	},
+  %w{	q           	          	}, %w{	`   	       	}, %w{	8        	    	}, %w{	    	    	},	# 1.5
   #  	home        	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
-  %w{	s           	          	}, %w{	)   	shifted	}, %w{	         	    	}, %w{	    	    	},
-  %w{	n           	          	}, %w{	_   	shifted	}, %w{	f13      	    	}, %w{	    	    	},
-  %w{	r           	          	}, %w{	/   	       	}, %w{	f14      	    	}, %w{	    	    	},
-  %w{	t           	          	}, %w{	\}  	shifted	}, %w{	f15      	    	}, %w{	    	    	},
-  %w{	d           	          	}, %w{	.   	       	}, %w{	f16      	    	}, %w{	    	    	},
+  %w{	s           	          	}, %w{	)   	shifted	}, %w{	0        	    	}, %w{	    	    	},
+  %w{	n           	          	}, %w{	_   	shifted	}, %w{	1        	    	}, %w{	    	    	},
+  %w{	r           	          	}, %w{	/   	       	}, %w{	2        	    	}, %w{	    	    	},
+  %w{	t           	          	}, %w{	\}  	shifted	}, %w{	3        	    	}, %w{	    	    	},
+  %w{	d           	          	}, %w{	.   	       	}, %w{	4        	    	}, %w{	    	    	},
   %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
   %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  %w{	b           	          	}, %w{	+   	shifted	}, %w{	         	    	}, %w{	    	    	},
-  %w{	m           	          	}, %w{	$   	shifted	}, %w{	f17      	    	}, %w{	    	    	},
-  %w{	j           	          	}, %w{	&   	shifted	}, %w{	f18      	    	}, %w{	    	    	},
-  %w{	y           	          	}, %w{	#   	shifted	}, %w{	f19      	    	}, %w{	    	    	},
-  %w{	;           	          	}, %w{	^   	shifted	}, %w{	f20      	    	}, %w{	    	    	},
+  %w{	b           	          	}, %w{	+   	shifted	}, %w{	9        	    	}, %w{	    	    	},
+  %w{	m           	          	}, %w{	$   	shifted	}, %w{	5        	    	}, %w{	    	    	},
+  %w{	j           	          	}, %w{	&   	shifted	}, %w{	6        	    	}, %w{	    	    	},
+  %w{	y           	          	}, %w{	#   	shifted	}, %w{	7        	    	}, %w{	    	    	},
+  %w{	;           	          	}, %w{	^   	shifted	}, %w{	8        	    	}, %w{	    	    	},
   %w{	shift_r     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
