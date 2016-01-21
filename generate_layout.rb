@@ -15,7 +15,7 @@ Layer = Struct.new :code, :up, :down
 class Key
   attr_reader :layers
 
-  Layers = [ :basic, :mod3, :mod4, :mod5 ]
+  Layers = [ :basic, :punc, :nav, :func ]
 
   Functions = {
     #            	    	down                                   	up
@@ -23,12 +23,12 @@ class Key
     "toggle"     	=> [	"&kbfun_toggle",                       	                    	],
     "transparent"	=> [	"&kbfun_transparent",                  	                    	],
     #            	    	down                                   	up
-    "mod3"       	=> [	"&kbfun_layer_push_1",                 	"&kbfun_layer_pop_1"	],
-    "mod4"       	=> [	"&kbfun_layer_push_2",                 	"&kbfun_layer_pop_2"	],
-    "mod5"       	=> [	"&kbfun_layer_push_3",                 	"&kbfun_layer_pop_3"	],
-    "latch_mod3" 	=> [	"&kbfun_layer_sticky_1",               	                    	],
-    "latch_mod4" 	=> [	"&kbfun_layer_sticky_2",               	                    	],
-    "latch_mod5" 	=> [	"&kbfun_layer_sticky_3",               	                    	],
+    "punc"       	=> [	"&kbfun_layer_push_1",                 	"&kbfun_layer_pop_1"	],
+    "nav"        	=> [	"&kbfun_layer_push_2",                 	"&kbfun_layer_pop_2"	],
+    "func"       	=> [	"&kbfun_layer_push_3",                 	"&kbfun_layer_pop_3"	],
+    "latch_punc" 	=> [	"&kbfun_layer_sticky_1",               	                    	],
+    "latch_nav"  	=> [	"&kbfun_layer_sticky_2",               	                    	],
+    "latch_func" 	=> [	"&kbfun_layer_sticky_3",               	                    	],
     #            	    	down                                   	up
     "shifted"    	=> [	"&kbfun_shift_press_release",          	                    	],
     "ctrled"     	=> [	"&kbfun_control_press_release",        	                    	],
@@ -161,9 +161,9 @@ class Key
     "shift_r"    	=> "KEY_RightShift",
     "scroll_lock"	=> "KEY_ScrollLock",
     #            	
-    "mod3"       	=> "1",
-    "mod4"       	=> "2",
-    "mod5"       	=> "3",
+    "punc"       	=> "1",
+    "nav"        	=> "2",
+    "func"       	=> "3",
     #            	
     "NULL"       	=> "NULL",
   }
@@ -229,12 +229,12 @@ HEADER
 end
 
 keys = [
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	
   %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# dummy key
   #  	            	          	      	    	       	      	         	    	      	    	    	  	
   #  	left hand   	          	      	    	       	      	         	    	      	    	    	  	
   #  	number      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	0           	          	}, %w{	f11 	       	}, %w{	f11      	    	}, %w{	f11 	    	},	# 1.5
   %w{	1           	          	}, %w{	f1  	       	}, %w{	f1       	    	}, %w{	f1  	    	},
   %w{	2           	          	}, %w{	f2  	       	}, %w{	f2       	    	}, %w{	f2  	    	},
@@ -243,7 +243,7 @@ keys = [
   %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},
   %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
   #  	top         	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},	# 1.5
   %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},
   %w{	v           	          	}, %w{	[   	       	}, %w{	backspace	    	}, %w{	    	    	},
@@ -252,7 +252,7 @@ keys = [
   %w{	w           	          	}, %w{	\\  	       	}, %w{	insert   	    	}, %w{	    	    	},
   %w{	tab         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   #  	home        	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   %w{	u           	          	}, %w{	,   	       	}, %w{	left     	    	}, %w{	    	    	},
   %w{	i           	          	}, %w{	\{  	shifted	}, %w{	up       	    	}, %w{	    	    	},
@@ -260,7 +260,7 @@ keys = [
   %w{	e           	          	}, %w{	!   	shifted	}, %w{	right    	    	}, %w{	    	    	},
   %w{	o           	          	}, %w{	(   	shifted	}, %w{	tab      	    	}, %w{	    	    	},
   #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	shift_l     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   %w{	%           	shifted   	}, %w{	`   	       	}, %w{	home     	    	}, %w{	    	    	},
   %w{	*           	shifted   	}, %w{	^   	shifted	}, %w{	page_up  	    	}, %w{	    	    	},
@@ -269,23 +269,23 @@ keys = [
   %w{	z           	          	}, %w{	@   	shifted	}, %w{	         	    	}, %w{	    	    	},
   %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	win         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
@@ -293,7 +293,7 @@ keys = [
   #  	right hand  	          	      	    	       	      	         	    	      	    	    	  	
   #  	            	          	      	    	       	      	         	    	      	    	    	  	
   #  	number      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},	# 1.5
   %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
   %w{	7           	          	}, %w{	f7  	       	}, %w{	f7       	    	}, %w{	f7  	    	},
@@ -302,7 +302,7 @@ keys = [
   %w{	0           	          	}, %w{	f10 	       	}, %w{	f10      	    	}, %w{	f10 	    	},
   %w{	0           	          	}, %w{	f12 	       	}, %w{	f12      	    	}, %w{	f12 	    	},
   #  	top         	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   %w{	k           	          	}, %w{	=   	       	}, %w{	9        	    	}, %w{	    	    	},
   %w{	h           	          	}, %w{	>   	shifted	}, %w{	5        	    	}, %w{	    	    	},
@@ -311,7 +311,7 @@ keys = [
   %w{	q           	          	}, %w{	`   	       	}, %w{	8        	    	}, %w{	    	    	},
   %w{	q           	          	}, %w{	`   	       	}, %w{	8        	    	}, %w{	    	    	},	# 1.5
   #  	home        	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	s           	          	}, %w{	)   	shifted	}, %w{	0        	    	}, %w{	    	    	},
   %w{	n           	          	}, %w{	_   	shifted	}, %w{	1        	    	}, %w{	    	    	},
   %w{	r           	          	}, %w{	/   	       	}, %w{	2        	    	}, %w{	    	    	},
@@ -319,7 +319,7 @@ keys = [
   %w{	d           	          	}, %w{	.   	       	}, %w{	4        	    	}, %w{	    	    	},
   %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   %w{	b           	          	}, %w{	+   	shifted	}, %w{	9        	    	}, %w{	    	    	},
   %w{	m           	          	}, %w{	$   	shifted	}, %w{	5        	    	}, %w{	    	    	},
@@ -328,26 +328,26 @@ keys = [
   %w{	;           	          	}, %w{	^   	shifted	}, %w{	8        	    	}, %w{	    	    	},
   %w{	shift_r     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
-  %w{	mod4        	mod4      	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
+  %w{	nav         	nav       	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	mod3        	latch_mod3	}, %w{	mod3	mod3   	}, %w{	NULL     	    	}, %w{	NULL	    	},
+  %w{	punc        	latch_punc	}, %w{	punc	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
   #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	mod3        	latch_mod3	}, %w{	mod3	mod3   	}, %w{	NULL     	    	}, %w{	NULL	    	},
+  %w{	punc        	latch_punc	}, %w{	punc	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
 
 ].each_slice(Key::Layers.size).map do |layers|
   Key.new layers
