@@ -172,10 +172,10 @@ NULL,
 NULL,
 NULL,
 NULL,
-1,
 NULL,
 NULL,
-1),
+NULL,
+NULL),
 
 KB_MATRIX_LAYER(
 NULL,
@@ -504,10 +504,10 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_layer_push_1,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_layer_push_1),
+&kbfun_press_release),
 
 KB_MATRIX_LAYER(
 &kbfun_transparent,
@@ -836,10 +836,10 @@ KB_MATRIX_LAYER(
 &kbfun_transparent,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_layer_pop_1,
+&kbfun_press_release,
 &kbfun_transparent,
 &kbfun_transparent,
-&kbfun_layer_pop_1),
+&kbfun_press_release),
 
 KB_MATRIX_LAYER(
 &kbfun_transparent,
