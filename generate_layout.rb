@@ -131,7 +131,6 @@ class Key
     "$"          	=> "KEY_4_Dollar",
     "&"          	=> "KEY_7_Ampersand",
     "#"          	=> "KEY_3_Pound",
-    "hash"       	=> "KEY_3_Pound",
     #            	
     "enter"      	=> "KEY_ReturnEnter",
     "return"     	=> "KEY_ReturnEnter",
@@ -229,145 +228,128 @@ HEADER
   end
 end
 
-keys_string =<<EOL
+keys = [
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# dummy key
+  #  	            	          	      	    	       	      	         	    	      	    	    	  	
+  #  	left hand   	          	      	    	       	      	         	    	      	    	    	  	
+  #  	number      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	0           	          	}, %w{	f11 	       	}, %w{	f11      	    	}, %w{	f11 	    	},	# 1.5
+  %w{	1           	          	}, %w{	f1  	       	}, %w{	f1       	    	}, %w{	f1  	    	},
+  %w{	2           	          	}, %w{	f2  	       	}, %w{	f2       	    	}, %w{	f2  	    	},
+  %w{	3           	          	}, %w{	f3  	       	}, %w{	f3       	    	}, %w{	f3  	    	},
+  %w{	4           	          	}, %w{	f4  	       	}, %w{	f4       	    	}, %w{	f4  	    	},
+  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},
+  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
+  #  	top         	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},	# 1.5
+  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},
+  %w{	v           	          	}, %w{	[   	       	}, %w{	backspace	    	}, %w{	    	    	},
+  %w{	l           	          	}, %w{	'   	       	}, %w{	enter    	    	}, %w{	    	    	},
+  %w{	c           	          	}, %w{	<   	shifted	}, %w{	delete   	    	}, %w{	    	    	},
+  %w{	w           	          	}, %w{	\\  	       	}, %w{	insert   	    	}, %w{	    	    	},
+  %w{	tab         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	home        	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	u           	          	}, %w{	,   	       	}, %w{	left     	    	}, %w{	    	    	},
+  %w{	i           	          	}, %w{	\{  	shifted	}, %w{	up       	    	}, %w{	    	    	},
+  %w{	a           	          	}, %w{	?   	shifted	}, %w{	down     	    	}, %w{	    	    	},
+  %w{	e           	          	}, %w{	!   	shifted	}, %w{	right    	    	}, %w{	    	    	},
+  %w{	o           	          	}, %w{	(   	shifted	}, %w{	tab      	    	}, %w{	    	    	},
+  #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	shift_l     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	%           	shifted   	}, %w{	`   	       	}, %w{	home     	    	}, %w{	    	    	},
+  %w{	*           	shifted   	}, %w{	^   	shifted	}, %w{	page_up  	    	}, %w{	    	    	},
+  %w{	:           	shifted   	}, %w{	|   	shifted	}, %w{	page_down	    	}, %w{	    	    	},
+  %w{	p           	          	}, %w{	-   	       	}, %w{	end      	    	}, %w{	    	    	},
+  %w{	z           	          	}, %w{	@   	shifted	}, %w{	         	    	}, %w{	    	    	},
+  %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	win         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	            	          	      	    	       	      	         	    	      	    	    	  	
+  #  	right hand  	          	      	    	       	      	         	    	      	    	    	  	
+  #  	            	          	      	    	       	      	         	    	      	    	    	  	
+  #  	number      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},	# 1.5
+  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
+  %w{	7           	          	}, %w{	f7  	       	}, %w{	f7       	    	}, %w{	f7  	    	},
+  %w{	8           	          	}, %w{	f8  	       	}, %w{	f8       	    	}, %w{	f8  	    	},
+  %w{	9           	          	}, %w{	f9  	       	}, %w{	f9       	    	}, %w{	f9  	    	},
+  %w{	0           	          	}, %w{	f10 	       	}, %w{	f10      	    	}, %w{	f10 	    	},
+  %w{	0           	          	}, %w{	f12 	       	}, %w{	f12      	    	}, %w{	f12 	    	},
+  #  	top         	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	k           	          	}, %w{	=   	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	h           	          	}, %w{	>   	shifted	}, %w{	f21      	    	}, %w{	    	    	},
+  %w{	g           	          	}, %w{	"   	shifted	}, %w{	f22      	    	}, %w{	    	    	},
+  %w{	f           	          	}, %w{	]   	       	}, %w{	f23      	    	}, %w{	    	    	},
+  %w{	q           	          	}, %w{	`   	       	}, %w{	f24      	    	}, %w{	    	    	},
+  %w{	q           	          	}, %w{	`   	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	home        	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	s           	          	}, %w{	)   	shifted	}, %w{	         	    	}, %w{	    	    	},
+  %w{	n           	          	}, %w{	_   	shifted	}, %w{	f13      	    	}, %w{	    	    	},
+  %w{	r           	          	}, %w{	/   	       	}, %w{	f14      	    	}, %w{	    	    	},
+  %w{	t           	          	}, %w{	\}  	shifted	}, %w{	f15      	    	}, %w{	    	    	},
+  %w{	d           	          	}, %w{	.   	       	}, %w{	f16      	    	}, %w{	    	    	},
+  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  %w{	b           	          	}, %w{	+   	shifted	}, %w{	         	    	}, %w{	    	    	},
+  %w{	m           	          	}, %w{	$   	shifted	}, %w{	f17      	    	}, %w{	    	    	},
+  %w{	j           	          	}, %w{	&   	shifted	}, %w{	f18      	    	}, %w{	    	    	},
+  %w{	y           	          	}, %w{	#   	shifted	}, %w{	f19      	    	}, %w{	    	    	},
+  %w{	;           	          	}, %w{	^   	shifted	}, %w{	f20      	    	}, %w{	    	    	},
+  %w{	shift_r     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
+  #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	mod4        	mod4      	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	    	}, %w{	NULL	    	},
+  #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
+  #  	letter      	type      	      	mod3	type   	      	mod4     	type	      	mod5	type	  	
+  %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	mod3        	latch_mod3	}, %w{	NULL	       	}, %w{	NULL     	    	}, %w{	NULL	    	},
 
-[╳1 # L FINGERS (1 to 27?)
-#	┰	0      	        	┰	1     	       	┰	2        	       	┰	3        	       	┰	4     	       	┰	5     	       	┰	6    		#      	
- 	┃	0      	        	┃	1     	       	┃	2        	       	┃	3        	       	┃	4     	       	┃	5     	       	┃	6    		# basic	
- 	┃	f11    	        	┃	f1    	       	┃	f2       	       	┃	f3       	       	┃	f4    	       	┃	f5    	       	┃	f6   		# pun  	
- 	┃	f11    	        	┃	f1    	       	┃	f2       	       	┃	f3       	       	┃	f4    	       	┃	f5    	       	┃	f6   		# nav  	
- 	┃	f11    	        	┃	f1    	       	┃	f2       	       	┃	f3       	       	┃	f4    	       	┃	f5    	       	┃	f6   		# funk 	
-#	┰	◼      	        	┰	x     	       	┰	v        	       	┰	l        	       	┰	c     	       	┰	w     	       	┰	◼    		#      	
- 	┃	x      	        	┃	x     	       	┃	v        	       	┃	l        	       	┃	c     	       	┃	w     	       	┃	tab  		# basic	
- 	┃	~      	shifted 	┃	~     	shifted	┃	[        	       	┃	'        	       	┃	<     	shifted	┃	\\    	       	┃	     		# pun  	
- 	┃	escape 	        	┃	escape	       	┃	backspace	       	┃	enter    	       	┃	delete	       	┃	insert	       	┃	     		# nav  	
- 	┃	       	        	┃	      	       	┃	         	       	┃	         	       	┃	      	       	┃	      	       	┃	     		# funk 	
-#	┰	◼      	        	┰	u     	       	┰	i        	       	┰	a        	       	┰	e     	       	┰	o     	       	 	     		#      	
- 	┃	umlaut 	        	┃	u     	       	┃	i        	       	┃	a        	       	┃	e     	       	┃	o     	       	 	     		# basic	
- 	┃	       	        	┃	,     	       	┃	\{       	shifted	┃	?        	shifted	┃	!     	shifted	┃	(     	shifted	 	     		# pun  	
- 	┃	       	        	┃	left  	       	┃	up       	       	┃	down     	       	┃	right 	       	┃	tab   	       	 	     		# nav  	
- 	┃	       	        	┃	      	       	┃	         	       	┃	         	       	┃	      	       	┃	      	       	 	     		# funk 	
-#	┰	◼      	        	┰	%     	       	┰	*        	       	┰	:        	       	┰	p     	       	┰	z     	       	┰	◼    		#      	
- 	┃	shift_l	capslock	┃	%     	shifted	┃	*        	shifted	┃	:        	shifted	┃	p     	       	┃	z     	       	┃	enter		# basic	
- 	┃	       	        	┃	`     	       	┃	^        	shifted	┃	|        	shifted	┃	-     	       	┃	@     	shifted	┃	     		# pun  	
- 	┃	       	        	┃	home  	       	┃	page_up  	       	┃	page_down	       	┃	end   	       	┃	      	       	┃	     		# nav  	
- 	┃	       	        	┃	      	       	┃	         	       	┃	         	       	┃	      	       	┃	      	       	┃	     		# funk 	]
-
-[╳2 # L UNDER (? to ?)
-#	┰	◼   		┰	◼ 		┰	◼   		┰	◼    		#      	
- 	┃	left		┃	up		┃	down		┃	right		# basic	
- 	┃	    		┃	  		┃	    		┃	     		# pun  	
- 	┃	    		┃	  		┃	    		┃	     		# nav  	
- 	┃	    		┃	  		┃	    		┃	     		# funk 	]
-
-[╳3 # L UNDERTHUMB (? to ?)
-#	┰	◼  		#      	
- 	┃	win		# basic	
- 	┃	   		# pun  	
- 	┃	   		# nav  	
- 	┃	   		# funk 	]
-
-[╳4 # L THUMB (? to ?)
-#	 	     		┰	b3         		┰	c3         		#      	
- 	 	     		┃	scroll_lock		┃	scroll_lock		# basic	
- 	 	     		┃	           		┃	           		# pun  	
- 	 	     		┃	           		┃	           		# nav  	
- 	 	     		┃	           		┃	           		# funk 	
-#	┰	a2*  		┰	b2*        		┰	c2         		#      	
- 	┃	space		┃	control    		┃	alt        		# basic	
- 	┃	     		┃	           		┃	           		# pun  	
- 	┃	     		┃	           		┃	           		# nav  	
- 	┃	     		┃	           		┃	           		# funk 	
-#	┰	a1   		┰	b1         		┰	c1         		#      	
- 	┃	space		┃	control    		┃	alt        		# basic	
- 	┃	     		┃	           		┃	           		# pun  	
- 	┃	     		┃	           		┃	           		# nav  	
- 	┃	     		┃	           		┃	           		# funk 	]
-
-[╳5 # R FINGERS (? to ?)
-#	┰	5    		┰	6 	       	┰	7  	       	┰	8  	       	┰	9   	       	┰	0  	       	┰	0      	        	#      	
- 	┃	5    		┃	6 	       	┃	7  	       	┃	8  	       	┃	9   	       	┃	0  	       	┃	0      	        	# basic	
- 	┃	f5   		┃	f6	       	┃	f7 	       	┃	f8 	       	┃	f9  	       	┃	f10	       	┃	f12    	        	# pun  	
- 	┃	f5   		┃	f6	       	┃	f7 	       	┃	f8 	       	┃	f9  	       	┃	f10	       	┃	f12    	        	# nav  	
- 	┃	f5   		┃	f6	       	┃	f7 	       	┃	f8 	       	┃	f9  	       	┃	f10	       	┃	f12    	        	# funk 	
-#	┰	◼    		┰	k 	       	┰	h  	       	┰	g  	       	┰	f   	       	┰	q  	       	┰	◼      	        	#      	
- 	┃	     		┃	k 	       	┃	h  	       	┃	g  	       	┃	f   	       	┃	q  	       	┃	q      	        	# basic	
- 	┃	     		┃	= 	       	┃	>  	shifted	┃	"  	shifted	┃	]   	       	┃	`  	       	┃	`      	        	# pun  	
- 	┃	     		┃	  	       	┃	f21	       	┃	f22	       	┃	f23 	       	┃	f24	       	┃	       	        	# nav  	
- 	┃	     		┃	  	       	┃	   	       	┃	   	       	┃	    	       	┃	   	       	┃	       	        	# funk 	
-#	 	     		┰	s 	       	┰	n  	       	┰	r  	       	┰	t   	       	┰	d  	       	┰	◼      	        	#      	
- 	 	     		┃	s 	       	┃	n  	       	┃	r  	       	┃	t   	       	┃	d  	       	┃	umlaut 	        	# basic	
- 	 	     		┃	) 	shifted	┃	_  	shifted	┃	/  	       	┃	\}  	shifted	┃	.  	       	┃	       	        	# pun  	
- 	 	     		┃	  	       	┃	f13	       	┃	f14	       	┃	f15 	       	┃	f16	       	┃	       	        	# nav  	
- 	 	     		┃	  	       	┃	   	       	┃	   	       	┃	    	       	┃	   	       	┃	       	        	# funk 	
-#	┰	◼    		┰	b 	       	┰	   	       	┰	j  	       	┰	y   	       	┰	;  	       	┰	◼      	        	#      	
- 	┃	enter		┃	b 	       	┃	m  	       	┃	j  	       	┃	y   	       	┃	;  	       	┃	shift_r	capslock	# basic	
- 	┃	     		┃	+ 	shifted	┃	$  	shifted	┃	&  	shifted	┃	hash	shifted	┃	^  	shifted	┃	       	        	# pun  	
- 	┃	     		┃	  	       	┃	f17	       	┃	f18	       	┃	f19 	       	┃	f20	       	┃	       	        	# nav  	
- 	┃	     		┃	  	       	┃	   	       	┃	   	       	┃	    	       	┃	   	       	┃	       	        	# funk 	]
-
-[╳6 # R UNDERTHUMB (? to ?)
-#				┰	◼   	    	#	
- 				┃	mod4	mod4	 	# basic	
- 				┃	    	    	 	# pun  	
- 				┃	    	    	 	# nav  	
- 				┃	    	    	 	# funk 	]
-
-[╳7 # R UNDER (? to ?)
-#	┰	◼   		┰	◼ 		┰	◼   		┰	◼    		#      	
- 	┃	left		┃	up		┃	down		┃	right		# basic	
- 	┃	    		┃	  		┃	    		┃	     		# pun  	
- 	┃	    		┃	  		┃	    		┃	     		# nav  	
- 	┃	    		┃	  		┃	    		┃	     		# funk 	]
-
-[╳8 # R THUMB (? to ?)
-#	┰	c3  		┰	b3 		 	    	          	#      	
- 	┃	    		┃	   		 	    	          	# basic	
- 	┃	    		┃	   		 	    	          	# pun  	
- 	┃	    		┃	   		 	    	          	# nav  	
- 	┃	    		┃	   		 	    	          	# funk 	
-#	┰	c2  		┰	b2*		┰	a2* 	          	#      	
- 	┃	menu		┃	alt		┃	mod3	latch_mod3	# basic	
- 	┃	    		┃	   		┃	NULL	          	# pun  	
- 	┃	    		┃	   		┃	NULL	          	# nav  	
- 	┃	    		┃	   		┃	NULL	          	# funk 	
-#	┰	c1  		┰	b1 		┰	a1  	          	#      	
- 	┃	menu		┃	alt		┃	mod3	latch_mod3	# basic	
- 	┃	    		┃	   		┃	NULL	          	# pun  	
- 	┃	    		┃	   		┃	NULL	          	# nav  	
- 	┃	    		┃	   		┃	NULL	          	# funk 	]
-EOL
-
-groups	= keys_string.gsub(/#.*$/, '').split(/\[╳/).reject(&:blank?).map(&:lines)
-groups	= groups.sort_by(&:first)
-groups	= groups.map{|g| g.drop(1).reject(&:blank?)}
-
-keys_parsed = [
-  # dummy key
-  Key::Layers.map{[]}
-]
-
-groups.each do |group|
-  layers = Key::Layers.size
-
-  # sanity check
-  raise "wrong number of key layers" if group.size % layers != 0
-
-  slices = group.map{|l| l.split("┃").drop(1)}
-
-  (0..(group.size-1)).step(layers).each do |row|
-    slices[row].size.times do |col|
-      key = layers.times.map do |layer|
-        slices[row+layer][col]
-      end
-      key = key.map{|l| l.strip.split(/\s+/, 2)}
-
-      keys_parsed << key
-    end
-  end
-end
-
-keys = keys_parsed.map do |layers|
+].each_slice(Key::Layers.size).map do |layers|
   Key.new layers
 end
 
