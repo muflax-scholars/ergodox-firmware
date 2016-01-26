@@ -270,16 +270,28 @@
 
 // Media key codes are not real scan codes, they must be translated to a 16
 //  bit number by the consumer key key function
-#define MEDIAKEY_PLAY_PAUSE     0x00
-#define MEDIAKEY_STOP           0x01
-#define MEDIAKEY_PREV_TRACK     0x02
-#define MEDIAKEY_NEXT_TRACK     0x03
-#define MEDIAKEY_AUDIO_MUTE     0x04
-#define MEDIAKEY_AUDIO_VOL_UP   0x05
-#define MEDIAKEY_AUDIO_VOL_DOWN 0x06
-
+#define MEDIAKEY_AUDIO_MUTE       	0
+#define MEDIAKEY_AUDIO_VOL_UP     	1
+#define MEDIAKEY_AUDIO_VOL_DOWN   	2
+#define MEDIAKEY_NEXT_TRACK       	3
+#define MEDIAKEY_PREV_TRACK       	4
+#define MEDIAKEY_STOP             	5
+#define MEDIAKEY_PLAY_PAUSE       	6
+#define MEDIAKEY_RECORD           	7
+#define MEDIAKEY_REWIND           	8
+#define MEDIAKEY_EJECT            	9
+#define MEDIAKEY_CC_CONFIG        	10
+#define MEDIAKEY_EMAIL            	11
+#define MEDIAKEY_CALCULATOR       	12
+#define MEDIAKEY_LOCAL_BROWSER    	13
+#define MEDIAKEY_BROWSER_SEARCH   	14
+#define MEDIAKEY_BROWSER_HOME     	15
+#define MEDIAKEY_BROWSER_BACK     	16
+#define MEDIAKEY_BROWSER_FORWARD  	17
+#define MEDIAKEY_BROWSER_STOP     	18
+#define MEDIAKEY_BROWSER_REFRESH  	19
+#define MEDIAKEY_BROWSER_BOOKMARKS	20
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 #endif
-
