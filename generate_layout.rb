@@ -20,6 +20,7 @@ class Key
   Functions = {
     #            	    	down                                   	up
     "basic"      	=> [	"&kbfun_press_release",                	                    	],
+    "media"      	=> [	"&kbfun_mediakey_press_release",       	                    	],
     "toggle"     	=> [	"&kbfun_toggle",                       	                    	],
     "transparent"	=> [	"&kbfun_transparent",                  	                    	],
     #            	    	down                                   	up
