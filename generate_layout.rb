@@ -278,11 +278,11 @@ keys = [
   #  	home        	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  %w{	u           	          	}, %w{	,   	       	}, %w{	left     	    	}, %w{	    	    	},
-  %w{	i           	          	}, %w{	\{  	shifted	}, %w{	up       	    	}, %w{	    	    	},
-  %w{	a           	          	}, %w{	?   	shifted	}, %w{	down     	    	}, %w{	    	    	},
-  %w{	e           	          	}, %w{	!   	shifted	}, %w{	right    	    	}, %w{	    	    	},
-  %w{	o           	          	}, %w{	(   	shifted	}, %w{	tab      	    	}, %w{	    	    	},
+  %w{	u           	          	}, %w{	,   	       	}, %w{	left     	    	}, %w{	f1  	    	},
+  %w{	i           	          	}, %w{	\{  	shifted	}, %w{	up       	    	}, %w{	f1  	    	},
+  %w{	a           	          	}, %w{	?   	shifted	}, %w{	down     	    	}, %w{	f1  	    	},
+  %w{	e           	          	}, %w{	!   	shifted	}, %w{	right    	    	}, %w{	f1  	    	},
+  %w{	o           	          	}, %w{	(   	shifted	}, %w{	tab      	    	}, %w{	f1  	    	},
   #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	shift_l     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
@@ -360,8 +360,8 @@ keys = [
   %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	punc        	punc      	}, %w{	    	       	}, %w{	func     	func	}, %w{	    	    	},
+  %w{	nav         	nav       	}, %w{	func	func   	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
