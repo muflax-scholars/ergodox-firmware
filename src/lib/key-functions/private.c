@@ -128,3 +128,7 @@ void _kbfun_mediakey_press_release(bool press, uint8_t keycode) {
     }
   }
 }
+
+uint8_t _kbfun_get_keycode() {
+  return kb_layout_get(main_arg_layer, main_arg_row, main_arg_col);
+}

@@ -12,16 +12,6 @@
 #include "../public.h"
 #include "../private.h"
 
-#define  MAX_LAYER_PUSH_POP_FUNCTIONS  10
-
-// convenience macros
-#define  LAYER         main_arg_layer
-#define  LAYER_OFFSET  main_arg_layer_offset
-#define  ROW           main_arg_row
-#define  COL           main_arg_col
-#define  IS_PRESSED    main_arg_is_pressed
-#define  WAS_PRESSED   main_arg_was_pressed
-
 /*
  * Generate a normal keypress or keyrelease
  */
@@ -44,21 +34,17 @@ void kbfun_press_release(void) {
  *  defining the key to be transparent for the layer.
  */
 void kbfun_press_release_preserve_sticky(void) {
-  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
-  _kbfun_press_release(IS_PRESSED, keycode);
+  uint8_t keycode = _kbfun_get_keycode();
+  _kbfun_press_release(main_arg_is_pressed, keycode);
 }
 
 /*
  * Toggle the key pressed or unpressed
  */
 void kbfun_toggle(void) {
-  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
-
-  if (_kbfun_is_pressed(keycode)) {
-    _kbfun_press_release(false, keycode);
-  } else {
-    _kbfun_press_release(true, keycode);
-  }
+  uint8_t keycode	= _kbfun_get_keycode();
+  bool is_pressed	= _kbfun_is_pressed(keycode);
+  _kbfun_press_release(!is_pressed, keycode);
 }
 
 /*
@@ -67,9 +53,9 @@ void kbfun_toggle(void) {
  */
 void kbfun_transparent(void) {
   main_arg_trans_key_pressed = true;
-  LAYER_OFFSET++;
-  LAYER = main_layers_peek(LAYER_OFFSET);
-  main_layers_pressed[ROW][COL] = LAYER;
+  main_arg_layer_offset++;
+  main_arg_layer = main_layers_peek(main_arg_layer_offset);
+  main_layers_pressed[main_arg_row][main_arg_col] = main_arg_layer;
   main_exec_key();
 }
 
@@ -79,24 +65,24 @@ void kbfun_transparent(void) {
  * ------------------------------------------------------------------------- */
 
 /*
- * While there are only MAX_LAYER_PUSH_POP_FUNCTIONS number of layer functions,
- * there are 1 + MAX_LAYER_PUSH_POP_FUNCTIONS layer ids because we still have
+ * While there are only KB_LAYERS number of layer functions,
+ * there are 1 + KB_LAYERS layer ids because we still have
  * layer 0 even if we will never have a push or pop function for it
  */
-static uint8_t layer_ids[1 + MAX_LAYER_PUSH_POP_FUNCTIONS];
+static uint8_t layer_ids[1 + KB_LAYERS];
 
 /*
  * Push a layer element containing the layer value specified in the keymap to
  * the top of the stack, and record the id of that layer element
  */
 static void layer_push(uint8_t local_id) {
-  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
+  uint8_t keycode = _kbfun_get_keycode();
   main_layers_pop_id(layer_ids[local_id]);
   // Only the topmost layer on the stack should be in sticky once state, pop
   // the top layer if it is in sticky once state
   uint8_t topSticky = main_layers_top_sticky();
   if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
-    main_layers_pop_id(main_layers_top_layer());
+    main_layers_disable_top();
   }
   layer_ids[local_id] = main_layers_push(keycode, eStickyNone);
 }
@@ -133,10 +119,11 @@ static void layer_push(uint8_t local_id) {
  *     popped if the function is invoked on a subsequent keypress.
  */
 static void layer_sticky(uint8_t local_id) {
-  uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
-  if (IS_PRESSED) {
-    uint8_t topLayer = main_layers_top_layer();
-    uint8_t topSticky = main_layers_top_sticky();
+  uint8_t keycode  	= _kbfun_get_keycode();
+  uint8_t topLayer 	= main_layers_top_layer();
+  uint8_t topSticky	= main_layers_top_sticky();
+
+  if (main_arg_is_pressed) {
     main_layers_pop_id(layer_ids[local_id]);
     if (topLayer == local_id) {
       if (topSticky == eStickyOnceUp) {
@@ -145,15 +132,13 @@ static void layer_sticky(uint8_t local_id) {
     } else {
       // only the topmost layer on the stack should be in sticky once state
       if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
-        main_layers_pop_id(layer_ids[topLayer]);
+        main_layers_disable_top();
       }
       layer_ids[local_id] = main_layers_push(keycode, eStickyOnceDown);
       // this should be the only place we care about this flag being cleared
       main_arg_any_non_trans_key_pressed = false;
     }
   } else {
-    uint8_t topLayer = main_layers_top_layer();
-    uint8_t topSticky = main_layers_top_sticky();
     if (topLayer == local_id) {
       if (topSticky == eStickyOnceDown) {
         // When releasing this sticky key, pop the layer always
