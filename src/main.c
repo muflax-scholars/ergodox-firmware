@@ -84,7 +84,7 @@ int main(void) {
 
         if (main_arg_is_pressed != main_arg_was_pressed) {
           if (main_arg_is_pressed) {
-            main_arg_layer               	= main_layers_peek(0);
+            main_arg_layer               	= main_layers_top_layer();
             main_layers_pressed[row][col]	= main_arg_layer;
             main_arg_trans_key_pressed   	= false;
           } else {
@@ -130,19 +130,56 @@ int main(void) {
  * Implemented as a fixed size stack.
  * ------------------------------------------------------------------------- */
 
-// ----------------------------------------------------------------------------
+// new array version
 
-struct layers {
-  uint8_t layer;
-  uint8_t id;
-  uint8_t sticky;
+struct layer {
+  bool   	active;
+  uint8_t	sticky;
 };
 
+struct layer	layers[KB_LAYERS];
+uint8_t     	layers_top = 0;
+
+// old stack version
+
+struct layer_stack {
+  uint8_t	layer;
+  uint8_t	id;
+  uint8_t	sticky;
+};
+
+struct layer_stack	layers_stack[MAX_ACTIVE_LAYERS];
+uint8_t           	layers_head = 0;
+uint8_t           	layers_ids_in_use[MAX_ACTIVE_LAYERS] = {true};
+
 // ----------------------------------------------------------------------------
 
-struct layers layers[MAX_ACTIVE_LAYERS];
-uint8_t       layers_head = 0;
-uint8_t       layers_ids_in_use[MAX_ACTIVE_LAYERS] = {true};
+// return the highest active layer
+uint8_t main_layers_top_layer() {
+  return layers_stack[layers_head].layer;
+}
+
+// return if highest active layer is sticky
+uint8_t main_layers_top_sticky() {
+  return layers_stack[layers_head].sticky;
+}
+
+// disable the highest active layer
+void main_layers_disable_top() {
+  main_layers_pop_id(layers_head);
+}
+
+
+
+
+
+
+
+
+
+
+
+// ----------------------------------------------------------------------------
 
 /*
  * Exec key
@@ -155,13 +192,15 @@ void main_exec_key(void) {
       ? kb_layout_press_get(main_arg_layer, main_arg_row, main_arg_col)
       : kb_layout_release_get(main_arg_layer, main_arg_row, main_arg_col) );
 
-  if (key_function)
+  if (key_function) {
     (*key_function)();
+  }
 
   // If the current layer is in the sticky once up state and a key defined
   //  for this layer (a non-transparent key) was pressed, pop the layer
-  if (layers[layers_head].sticky == eStickyOnceUp && main_arg_any_non_trans_key_pressed)
-    main_layers_pop_id(layers_head);
+  if (main_layers_top_sticky() == eStickyOnceUp && main_arg_any_non_trans_key_pressed) {
+    main_layers_disable_top();
+  }
 }
 
 /*
@@ -176,15 +215,7 @@ void main_exec_key(void) {
  */
 uint8_t main_layers_peek(uint8_t offset) {
   if (offset <= layers_head) {
-    return layers[layers_head - offset].layer;
-  }
-
-  return 0; // default, or error
-}
-
-uint8_t main_layers_peek_sticky(uint8_t offset) {
-  if (offset <= layers_head) {
-    return layers[layers_head - offset].sticky;
+    return layers_stack[layers_head - offset].layer;
   }
 
   return 0; // default, or error
@@ -205,11 +236,11 @@ uint8_t main_layers_push(uint8_t layer, uint8_t sticky) {
   for (uint8_t id=1; id<MAX_ACTIVE_LAYERS; id++) {
     // if one is found
     if (layers_ids_in_use[id] == false) {
-      layers_ids_in_use[id]     	= true;
-      layers_head++;            	
-      layers[layers_head].layer 	= layer;
-      layers[layers_head].id    	= id;
-      layers[layers_head].sticky	= sticky;
+      layers_ids_in_use[id]           	= true;
+      layers_head++;                  	
+      layers_stack[layers_head].layer 	= layer;
+      layers_stack[layers_head].id    	= id;
+      layers_stack[layers_head].sticky	= sticky;
       return id;
     }
   }
@@ -227,44 +258,18 @@ void main_layers_pop_id(uint8_t id) {
   // look for the element with the id we want to pop
   for (uint8_t element=1; element<=layers_head; element++) {
     // if we find it
-    if (layers[element].id == id) {
+    if (layers_stack[element].id == id) {
       // move all layers above it down one
       for (; element<layers_head; element++) {
-        layers[element].layer	= layers[element+1].layer;
-        layers[element].id   	= layers[element+1].id;
+        layers_stack[element].layer	= layers_stack[element+1].layer;
+        layers_stack[element].id   	= layers_stack[element+1].id;
       }
       // reinitialize the topmost (now unused) slot
-      layers[layers_head].layer	= 0;
-      layers[layers_head].id   	= 0;
+      layers_stack[layers_head].layer	= 0;
+      layers_stack[layers_head].id   	= 0;
       // record keeping
       layers_ids_in_use[id] = false;
       layers_head--;
     }
   }
 }
-
-/*
- * get_offset_id()
- *
- * Arguments
- * - 'id': the id of the element you want the offset of
- *
- * Returns
- * - success: the offset (down the stack from the head element) of the element
- *   with the given id
- * - failure: 0 (default) (id unassigned)
- */
-uint8_t main_layers_get_offset_id(uint8_t id) {
-  // look for the element with the id we want to get the offset of
-  for (uint8_t element=1; element<=layers_head; element++) {
-    // if we find it
-    if (layers[element].id == id) {
-      return (layers_head - element);
-    }
-  }
-
-  return 0; // default, or error
-}
-
-/* ----------------------------------------------------------------------------
- * ------------------------------------------------------------------------- */

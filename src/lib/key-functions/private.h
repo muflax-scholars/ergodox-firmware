@@ -11,17 +11,16 @@
 
 
 #ifndef LIB__KEY_FUNCTIONS__INTERNAL_h
-	#define LIB__KEY_FUNCTIONS__INTERNAL_h
+#define LIB__KEY_FUNCTIONS__INTERNAL_h
 
-	#include <stdbool.h>
-	#include <stdint.h>
-	#include "../../keyboard/matrix.h"
+#include <stdbool.h>
+#include <stdint.h>
+#include "../../keyboard/matrix.h"
 
-	// --------------------------------------------------------------------
+// --------------------------------------------------------------------
 
-	void _kbfun_press_release     (bool press, uint8_t keycode);
-	bool _kbfun_is_pressed        (uint8_t keycode);
-	void _kbfun_mediakey_press_release (bool press, uint8_t keycode);
+void _kbfun_press_release         	(bool press, uint8_t keycode);
+bool _kbfun_is_pressed            	(uint8_t keycode);
+void _kbfun_mediakey_press_release	(bool press, uint8_t keycode);
 
 #endif
-

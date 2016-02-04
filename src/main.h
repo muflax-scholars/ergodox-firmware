@@ -45,12 +45,12 @@
 
 	void main_exec_key (void);
 
-	uint8_t main_layers_peek          (uint8_t offset);
-	uint8_t main_layers_peek_sticky   (uint8_t offset);
-	uint8_t main_layers_push          (uint8_t layer, uint8_t sticky);
-	void    main_layers_pop_id        (uint8_t id);
-	uint8_t main_layers_get_offset_id (uint8_t id);
+	uint8_t main_layers_top_layer 	(void);
+	uint8_t main_layers_top_sticky	(void);
+
+	uint8_t main_layers_peek         	(uint8_t offset);
+	uint8_t main_layers_push         	(uint8_t layer, uint8_t sticky);
+	void    main_layers_pop_id       	(uint8_t id);
 
 
 #endif
-
