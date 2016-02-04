@@ -62,13 +62,21 @@ void kbfun_transparent(void) {
 
 
 /* ----------------------------------------------------------------------------
- * layer push/pop functions
+ * layer functions
  * ------------------------------------------------------------------------- */
 
-/*
- * Push a layer element containing the layer value specified in the keymap to
- * the top of the stack, and record the id of that layer element
- */
+// all lower layers on a key should be secretly set/unset to enable proper layer stacking
+static void layer_enable_downwards(uint8_t layer) {
+  // TODO
+  main_layers_enable(layer, eStickyNone);
+}
+
+static void layer_disable_downwards(uint8_t layer) {
+  // TODO
+  main_layers_disable(layer);
+}
+
+// enable given layer
 static void layer_enable(uint8_t layer) {
   // FIXME necessary?
   main_layers_disable(layer);
@@ -79,7 +87,13 @@ static void layer_enable(uint8_t layer) {
   if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
     main_layers_disable_top();
   }
-  main_layers_enable(layer, eStickyNone);
+
+  layer_enable_downwards(layer);
+}
+
+// disable given layer
+static void layer_disable(uint8_t layer) {
+  layer_disable_downwards(layer);
 }
 
 /*
@@ -148,16 +162,7 @@ static void layer_sticky(uint8_t layer) {
   }
 }
 
-/*
- * Pop the layer element created by the corresponding "layer push" function
- * out of the layer stack (no matter where it is in the stack, without
- * touching any other elements)
- */
-static void layer_disable(uint8_t layer) {
-  main_layers_disable(layer);
-}
-
-// push/pop functions for all layers
+// functions for all layers
 
 #define define_layer(n)                                        \
   void kbfun_layer_enable_##n 	(void)	{ layer_enable(n); 	} \
