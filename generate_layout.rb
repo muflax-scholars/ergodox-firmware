@@ -19,21 +19,21 @@ class Key
 
   Functions = {
     #            	    	down                                   	up
-    "basic"      	=> [	"&kbfun_press_release",                	                    	],
-    "media"      	=> [	"&kbfun_mediakey_press_release",       	                    	],
-    "toggle"     	=> [	"&kbfun_toggle",                       	                    	],
-    "transparent"	=> [	"&kbfun_transparent",                  	                    	],
+    "basic"      	=> [	"&kbfun_press_release",                	                        	],
+    "media"      	=> [	"&kbfun_mediakey_press_release",       	                        	],
+    "toggle"     	=> [	"&kbfun_toggle",                       	                        	],
+    "transparent"	=> [	"&kbfun_transparent",                  	                        	],
     #            	    	down                                   	up
-    "punc"       	=> [	"&kbfun_layer_push_1",                 	"&kbfun_layer_pop_1"	],
-    "nav"        	=> [	"&kbfun_layer_push_2",                 	"&kbfun_layer_pop_2"	],
-    "func"       	=> [	"&kbfun_layer_push_3",                 	"&kbfun_layer_pop_3"	],
-    "latch_punc" 	=> [	"&kbfun_layer_sticky_1",               	                    	],
-    "latch_nav"  	=> [	"&kbfun_layer_sticky_2",               	                    	],
-    "latch_func" 	=> [	"&kbfun_layer_sticky_3",               	                    	],
+    "punc"       	=> [	"&kbfun_layer_enable_1",               	"&kbfun_layer_disable_1"	],
+    "nav"        	=> [	"&kbfun_layer_enable_2",               	"&kbfun_layer_disable_2"	],
+    "func"       	=> [	"&kbfun_layer_enable_3",               	"&kbfun_layer_disable_3"	],
+    "latch_punc" 	=> [	"&kbfun_layer_sticky_1",               	                        	],
+    "latch_nav"  	=> [	"&kbfun_layer_sticky_2",               	                        	],
+    "latch_func" 	=> [	"&kbfun_layer_sticky_3",               	                        	],
     #            	    	down                                   	up
-    "shifted"    	=> [	"&kbfun_shift_press_release",          	                    	],
-    "ctrled"     	=> [	"&kbfun_control_press_release",        	                    	],
-    "capslock"   	=> [	"&kbfun_2_keys_capslock_press_release",	                    	],
+    "shifted"    	=> [	"&kbfun_shift_press_release",          	                        	],
+    "ctrled"     	=> [	"&kbfun_control_press_release",        	                        	],
+    "capslock"   	=> [	"&kbfun_2_keys_capslock_press_release",	                        	],
   }
 
   Keys = {

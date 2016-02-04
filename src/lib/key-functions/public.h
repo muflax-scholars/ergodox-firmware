@@ -22,21 +22,21 @@ void kbfun_toggle                       	(void);
 void kbfun_transparent                  	(void);
 
 // layer push/pop functions
-#define simple_layer(n) \
-  void kbfun_layer_push_##n  	(void); \
-  void kbfun_layer_sticky_##n	(void); \
-  void kbfun_layer_pop_##n   	(void);
+#define define_layer(n)                \
+  void kbfun_layer_enable_##n 	(void); \
+  void kbfun_layer_sticky_##n 	(void); \
+  void kbfun_layer_disable_##n	(void);
 
-simple_layer(1);
-simple_layer(2);
-simple_layer(3);
-simple_layer(4);
-simple_layer(5);
-simple_layer(6);
-simple_layer(7);
-simple_layer(8);
-simple_layer(9);
-simple_layer(10);
+define_layer(1);
+define_layer(2);
+define_layer(3);
+define_layer(4);
+define_layer(5);
+define_layer(6);
+define_layer(7);
+define_layer(8);
+define_layer(9);
+define_layer(10);
 
 // device
 void kbfun_jump_to_bootloader (void);

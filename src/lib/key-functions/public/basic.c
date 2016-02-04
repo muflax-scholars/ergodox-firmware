@@ -69,7 +69,7 @@ void kbfun_transparent(void) {
  * Push a layer element containing the layer value specified in the keymap to
  * the top of the stack, and record the id of that layer element
  */
-static void layer_push(uint8_t layer) {
+static void layer_enable(uint8_t layer) {
   // FIXME necessary?
   main_layers_disable(layer);
 
@@ -153,24 +153,24 @@ static void layer_sticky(uint8_t layer) {
  * out of the layer stack (no matter where it is in the stack, without
  * touching any other elements)
  */
-static void layer_pop(uint8_t layer) {
+static void layer_disable(uint8_t layer) {
   main_layers_disable(layer);
 }
 
 // push/pop functions for all layers
 
-#define simple_layer(n) \
-  void kbfun_layer_push_##n  	(void)	{ layer_push(n);  	} \
-  void kbfun_layer_sticky_##n	(void)	{ layer_sticky(n);	} \
-  void kbfun_layer_pop_##n   	(void)	{ layer_pop(n);   	}
+#define define_layer(n)                                        \
+  void kbfun_layer_enable_##n 	(void)	{ layer_enable(n); 	} \
+  void kbfun_layer_sticky_##n 	(void)	{ layer_sticky(n); 	} \
+  void kbfun_layer_disable_##n	(void)	{ layer_disable(n);	}
 
-simple_layer(1);
-simple_layer(2);
-simple_layer(3);
-simple_layer(4);
-simple_layer(5);
-simple_layer(6);
-simple_layer(7);
-simple_layer(8);
-simple_layer(9);
-simple_layer(10);
+define_layer(1);
+define_layer(2);
+define_layer(3);
+define_layer(4);
+define_layer(5);
+define_layer(6);
+define_layer(7);
+define_layer(8);
+define_layer(9);
+define_layer(10);
