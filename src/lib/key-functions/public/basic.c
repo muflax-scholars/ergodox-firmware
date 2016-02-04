@@ -138,7 +138,7 @@ static void layer_sticky(uint8_t layer) {
       if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
         main_layers_disable_top();
       }
-      layers_enable_downwards(layer);
+      main_layers_enable(layer, eStickyOnceDown);
 
       // this should be the only place we care about this flag being cleared
       main_arg_any_non_trans_key_pressed = false;
