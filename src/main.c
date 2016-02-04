@@ -131,9 +131,11 @@ int main(void) {
 
 // find highest active layer
 uint8_t _highest_active_layer(uint8_t offset) {
-  if (offset < layers_top) {
-    for (uint8_t l = layers_top - offset; l--; l>0) {
-      if (layers[l].active) { return l; }
+  if (offset <= layers_top) {
+    for (uint8_t l = layers_top - offset; l > 0; l--) {
+      if (l < KB_LAYERS && layers[l].active) {
+        return l;
+      }
     }
   }
 
