@@ -131,11 +131,9 @@ int main(void) {
 
 // find highest active layer
 uint8_t _highest_active_layer(uint8_t offset) {
-  if (offset <= layers_top) {
-    for (uint8_t l = layers_top - offset; l > 0; l--) {
-      if (l < KB_LAYERS && layers[l].active) {
-        return l;
-      }
+  if (offset < layers_top) {
+    for (uint8_t l = layers_top - offset; l > 0 && l < KB_LAYERS; l--) {
+      if (layers[l].active) { return l; }
     }
   }
 
@@ -155,6 +153,8 @@ uint8_t main_layers_top_sticky() {
 
 // enable a layer
 void main_layers_enable(uint8_t layer, uint8_t sticky) {
+  if (layer >= KB_LAYERS) { return; }
+
   layers[layer].active = true;
   layers[layer].sticky = sticky;
 
@@ -165,8 +165,10 @@ void main_layers_enable(uint8_t layer, uint8_t sticky) {
 
 // disable a layer
 void main_layers_disable(uint8_t layer) {
+  if (layer >= KB_LAYERS) { return; }
+
   layers[layer].active = false;
-  if (layer == layers_top) {
+  if (layer >= layers_top) {
     layers_top = _highest_active_layer(1);
   }
 }
