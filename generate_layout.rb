@@ -162,9 +162,7 @@ class Key
     "shift_r"          	=> "KEY_RightShift",
     "scroll_lock"      	=> "KEY_ScrollLock",
     #                  	
-    "punc"             	=> "1",
-    "nav"              	=> "2",
-    "func"             	=> "3",
+    "MOD"              	=> "NULL",
     #                  	
     "NULL"             	=> "NULL",
     #                  	
@@ -302,7 +300,7 @@ keys = [
   #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	MOD         	func      	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
@@ -353,25 +351,25 @@ keys = [
   %w{	shift_r     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
   #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	nav         	nav       	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
+  %w{	MOD         	nav       	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	punc        	punc      	}, %w{	    	       	}, %w{	func     	func	}, %w{	    	    	},
-  %w{	nav         	nav       	}, %w{	func	func   	}, %w{	         	    	}, %w{	    	    	},
+  %w{	MOD         	punc      	}, %w{	    	       	}, %w{	MOD      	func	}, %w{	    	    	},
+  %w{	MOD         	nav       	}, %w{	MOD 	func   	}, %w{	         	    	}, %w{	    	    	},
   #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	punc        	latch_punc	}, %w{	punc	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
+  %w{	MOD         	latch_punc	}, %w{	MOD 	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
   #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
   #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
   %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
   %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	punc        	latch_punc	}, %w{	punc	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
+  %w{	MOD         	latch_punc	}, %w{	MOD 	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
 
 ].each_slice(Key::Layers.size).map do |layers|
   Key.new layers
