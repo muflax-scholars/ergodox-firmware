@@ -16,12 +16,7 @@
 
 	// --------------------------------------------------------------------
 
-	#include "./controller/teensy-2-0--led.h"
-
-	// --------------------------------------------------------------------
-
 	uint8_t kb_init(void);
 	uint8_t kb_update_matrix(bool matrix[KB_ROWS][KB_COLUMNS]);
 
 #endif
-

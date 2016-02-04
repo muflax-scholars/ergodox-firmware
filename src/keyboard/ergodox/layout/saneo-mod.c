@@ -5,7 +5,7 @@
 #include <stddef.h>
 #include <avr/pgmspace.h>
 #include "../../../lib/data-types/misc.h"
-#include "../../../lib/usb/usage-page/keyboard--short-names.h"
+#include "../../../lib/usb/usage-page/keyboard.h"
 #include "../../../lib/key-functions/public.h"
 #include "../matrix.h"
 #include "../layout.h"
