@@ -52,6 +52,7 @@ void kbfun_toggle(void) {
  * active
  */
 void kbfun_transparent(void) {
+  // TODO maybe re-implement this cleaner?
   main_arg_trans_key_pressed = true;
   main_arg_layer_offset++;
   main_arg_layer = main_layers_peek(main_arg_layer_offset);

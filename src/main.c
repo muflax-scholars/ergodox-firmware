@@ -108,15 +108,7 @@ int main(void) {
 
 // ----------------------------------------------------------------------------
 
-/* ----------------------------------------------------------------------------
- * Layer Functions
- * ----------------------------------------------------------------------------
- * We keep track of which layer is foremost by placing it on a stack.  Layers
- * may appear in the stack more than once.  The base layer will always be
- * layer-0.
- *
- * Implemented as a fixed size stack.
- * ------------------------------------------------------------------------- */
+// layer functions
 
 // new array version
 
@@ -188,6 +180,16 @@ void main_layers_disable(uint8_t layer) {
   }
 }
 
+// return layer offset elements below the top
+uint8_t main_layers_peek(uint8_t offset) {
+  // TODO remove this
+  if (offset <= layers_head) {
+    return layers_stack[layers_head - offset].layer;
+  }
+
+  return 0; // default, or error
+}
+
 // execute the keypress or keyrelease function (if it exists) of the key at the current possition
 void main_exec_key(void) {
   void (*key_function)(void) =
@@ -215,24 +217,6 @@ void main_exec_key(void) {
 
 
 // TODO remove all this
-
-/*
- * peek()
- *
- * Arguments
- * - 'offset': the offset (down the stack) from the head element
- *
- * Returns
- * - success: the layer-number of the requested element (which may be 0)
- * - failure: 0 (default) (out of bounds)
- */
-uint8_t main_layers_peek(uint8_t offset) {
-  if (offset <= layers_head) {
-    return layers_stack[layers_head - offset].layer;
-  }
-
-  return 0; // default, or error
-}
 
 /*
  * push()
