@@ -65,42 +65,78 @@ void kbfun_transparent(void) {
  * layer functions
  * ------------------------------------------------------------------------- */
 
+// helper functions
+
+static bool is_layer_enable(void_funptr_t f) {
+  if (f == &kbfun_layer_enable || f == &kbfun_layer_sticky) {
+    return true;
+  }
+  return false;
+}
+
+static bool is_layer_disable(void_funptr_t f) {
+  if (f == &kbfun_layer_disable || f == &kbfun_layer_sticky) {
+    return true;
+  }
+  return false;
+}
+
+static void layer_enable_upto(uint8_t max_layer) {
+  // FIXME clean this up
+
+  // pressing a key implicitly activates all lower layers as well
+  for (uint8_t layer=0; layer <= KB_LAYERS; layer++) {
+    void (*key_function)(void) = kb_layout_press_get(layer, main_arg_row, main_arg_col);
+
+    if (is_layer_enable(key_function)) {
+      uint8_t enable_layer = kb_layout_get(layer, main_arg_row, main_arg_col);
+      if (enable_layer <= max_layer) {
+        main_layers_enable(enable_layer, eStickyNone);
+      }
+    }
+  }
+}
+
+static void layer_disable_all() {
+  // FIXME clean this up
+
+  // letting go off a key releases *all* layers on that key
+  for (uint8_t layer=0; layer <= KB_LAYERS; layer++) {
+    void (*key_function)(void) = kb_layout_release_get(layer, main_arg_row, main_arg_col);
+
+    if (is_layer_disable(key_function)) {
+      uint8_t disable_layer = kb_layout_get(layer, main_arg_row, main_arg_col);
+      main_layers_disable(disable_layer);
+    }
+  }
+}
+
+// actual functions
+
 // enable given layer
-static void layer_enable(uint8_t layer) {
+void kbfun_layer_enable() {
+  uint8_t layer = _kbfun_get_keycode();
+
+  // FIXME useful for anything?
   // Only the topmost layer on the stack should be in sticky once state, pop
   // the top layer if it is in sticky once state
-  uint8_t topSticky = main_layers_top_sticky();
-  if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
-    main_layers_disable_top();
-  }
+  /* uint8_t topSticky = main_layers_top_sticky(); */
+  /* if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) { */
+  /*   main_layers_disable_top(); */
+  /* } */
 
-  main_layers_enable(layer, eStickyNone);
+  layer_enable_upto(layer);
 }
 
 // disable given layer
-static void layer_disable(uint8_t layer) {
-  main_layers_disable(layer);
+void kbfun_layer_disable() {
+  /* uint8_t layer = _kbfun_get_keycode(); */
+  layer_disable_all();
 }
 
 /*
  * This function gives similar behavior to sticky keys for modifiers available
- *  on most operating systems. It is considered an accessibility feature
- *  because it alleviates the user from having to hold down modifiers while
- *  pressing a key to produce the modified key function. It is useful for fast
- *  touch typing because you can avoid chording motions which both strain your
- *  hands and take your hands out of home-row position while pressing normal
- *  alpha keys.
- * This function emulates the 3-state behavior which is default on OS X and
- *  optional in Windows where the modifier cycles between Off->Once->Locked
- *  states. This is particularly handy for symbol layers where you typically
- *  only type one symbol before you want to return to unmodified typing (layer
- *  0), e.g. 'if (condition) { a = "b" + "c"; }'. If you assign a symbol layer
- *  to a thumb key as a layer sticky cycle, you can type the entire line of
- *  code without taking your hands out of home row position and you do not need
- *  to toggle off the layer after each symbol is pressed, only immediately
- *  before keying the symbol.
- * The exact behavior of the layer sticky cycle function is defined as follows
- *  for each state:
+ *  on most operating systems.
  * 1) One time down (set on key press) - The layer was not active and the key
  *     has been pressed but not yet released. The layer is pushed in the one
  *     time down state.
@@ -113,15 +149,17 @@ static void layer_disable(uint8_t layer) {
  *     state when the layer sticky key was pressed again. The layer will be
  *     popped if the function is invoked on a subsequent keypress.
  */
-static void layer_sticky(uint8_t layer) {
+void kbfun_layer_sticky() {
+  uint8_t layer    	= _kbfun_get_keycode();
   uint8_t topLayer 	= main_layers_top_layer();
   uint8_t topSticky	= main_layers_top_sticky();
 
   if (main_arg_is_pressed) {
     if (topLayer == layer) {
-      if (topSticky == eStickyOnceUp) {
-        main_layers_enable(layer, eStickyLock);
-      }
+      // FIXME
+      /* if (topSticky == eStickyOnceUp) { */
+      /*   main_layers_enable(layer, eStickyLock); */
+      /* } */
     } else {
       // only the topmost layer on the stack should be in sticky once state
       if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
@@ -146,20 +184,4 @@ static void layer_sticky(uint8_t layer) {
       }
     }
   }
-}
-
-// actual functions
-
-void kbfun_layer_enable(void) {
-  uint8_t keycode = _kbfun_get_keycode();
-  layer_enable(keycode);
-}
-
-void kbfun_layer_sticky(void) {
-  uint8_t keycode = _kbfun_get_keycode();
-  layer_sticky(keycode);
-}
-void kbfun_layer_disable(void) {
-  uint8_t keycode = _kbfun_get_keycode();
-  layer_disable(keycode);
 }
