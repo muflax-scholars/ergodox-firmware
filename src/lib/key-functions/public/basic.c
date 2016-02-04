@@ -75,16 +75,15 @@ static uint8_t layer_ids[1 + KB_LAYERS];
  * Push a layer element containing the layer value specified in the keymap to
  * the top of the stack, and record the id of that layer element
  */
-static void layer_push(uint8_t local_id) {
-  uint8_t keycode = _kbfun_get_keycode();
-  main_layers_pop_id(layer_ids[local_id]);
+static void layer_push(uint8_t layer) {
+  main_layers_pop_id(layer_ids[layer]);
   // Only the topmost layer on the stack should be in sticky once state, pop
   // the top layer if it is in sticky once state
   uint8_t topSticky = main_layers_top_sticky();
   if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
     main_layers_disable_top();
   }
-  layer_ids[local_id] = main_layers_push(keycode, eStickyNone);
+  layer_ids[layer] = main_layers_push(layer, eStickyNone);
 }
 
 /*
@@ -118,36 +117,35 @@ static void layer_push(uint8_t local_id) {
  *     state when the layer sticky key was pressed again. The layer will be
  *     popped if the function is invoked on a subsequent keypress.
  */
-static void layer_sticky(uint8_t local_id) {
-  uint8_t keycode  	= _kbfun_get_keycode();
-  uint8_t topLayer 	= main_layers_top_layer();
-  uint8_t topSticky	= main_layers_top_sticky();
+static void layer_sticky(uint8_t layer) {
+  uint8_t topLayer  	= main_layers_top_layer();
+  uint8_t topSticky 	= main_layers_top_sticky();
 
   if (main_arg_is_pressed) {
-    main_layers_pop_id(layer_ids[local_id]);
-    if (topLayer == local_id) {
+    main_layers_pop_id(layer_ids[layer]);
+    if (topLayer == layer) {
       if (topSticky == eStickyOnceUp) {
-        layer_ids[local_id] = main_layers_push(keycode, eStickyLock);
+        layer_ids[layer] = main_layers_push(layer, eStickyLock);
       }
     } else {
       // only the topmost layer on the stack should be in sticky once state
       if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
         main_layers_disable_top();
       }
-      layer_ids[local_id] = main_layers_push(keycode, eStickyOnceDown);
+      layer_ids[layer] = main_layers_push(layer, eStickyOnceDown);
       // this should be the only place we care about this flag being cleared
       main_arg_any_non_trans_key_pressed = false;
     }
   } else {
-    if (topLayer == local_id) {
+    if (topLayer == layer) {
       if (topSticky == eStickyOnceDown) {
         // When releasing this sticky key, pop the layer always
-        main_layers_pop_id(layer_ids[local_id]);
+        main_layers_pop_id(layer_ids[layer]);
         if (!main_arg_any_non_trans_key_pressed) {
           // If no key defined for this layer (a non-transparent key)
           //  was pressed, push the layer again, but in the
           //  StickyOnceUp state
-          layer_ids[local_id] = main_layers_push(keycode, eStickyOnceUp);
+          layer_ids[layer] = main_layers_push(layer, eStickyOnceUp);
         }
       }
     }
@@ -159,9 +157,9 @@ static void layer_sticky(uint8_t local_id) {
  * out of the layer stack (no matter where it is in the stack, without
  * touching any other elements)
  */
-static void layer_pop(uint8_t local_id) {
-  main_layers_pop_id(layer_ids[local_id]);
-  layer_ids[local_id] = 0;
+static void layer_pop(uint8_t layer) {
+  main_layers_pop_id(layer_ids[layer]);
+  layer_ids[layer] = 0;
 }
 
 // push/pop functions for all layers
