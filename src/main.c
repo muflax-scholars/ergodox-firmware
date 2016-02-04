@@ -167,7 +167,8 @@ void main_layers_enable(uint8_t layer, uint8_t sticky) {
 void main_layers_disable(uint8_t layer) {
   if (layer >= KB_LAYERS) { return; }
 
-  layers[layer].active = false;
+  // base layer stays always on
+  if (layer > 0) { layers[layer].active = false; }
   if (layer >= layers_top) {
     layers_top = _highest_active_layer(1);
   }

@@ -65,17 +65,6 @@ void kbfun_transparent(void) {
  * layer functions
  * ------------------------------------------------------------------------- */
 
-// all lower layers on a key should be secretly set/unset to enable proper layer stacking
-static void layers_enable_downwards(uint8_t layer) {
-  // TODO
-  main_layers_enable(layer, eStickyNone);
-}
-
-static void layers_disable_downwards(uint8_t layer) {
-  // TODO
-  main_layers_disable(layer);
-}
-
 // enable given layer
 static void layer_enable(uint8_t layer) {
   // Only the topmost layer on the stack should be in sticky once state, pop
@@ -85,12 +74,12 @@ static void layer_enable(uint8_t layer) {
     main_layers_disable_top();
   }
 
-  layers_enable_downwards(layer);
+  main_layers_enable(layer, eStickyNone);
 }
 
 // disable given layer
 static void layer_disable(uint8_t layer) {
-  layers_disable_downwards(layer);
+  main_layers_disable(layer);
 }
 
 /*
@@ -159,20 +148,18 @@ static void layer_sticky(uint8_t layer) {
   }
 }
 
-// functions for all layers
+// actual functions
 
-#define define_layer(n)                                        \
-  void kbfun_layer_enable_##n 	(void)	{ layer_enable(n); 	} \
-  void kbfun_layer_sticky_##n 	(void)	{ layer_sticky(n); 	} \
-  void kbfun_layer_disable_##n	(void)	{ layer_disable(n);	}
+void kbfun_layer_enable(void) {
+  uint8_t keycode = _kbfun_get_keycode();
+  layer_enable(keycode);
+}
 
-define_layer(1);
-define_layer(2);
-define_layer(3);
-define_layer(4);
-define_layer(5);
-define_layer(6);
-define_layer(7);
-define_layer(8);
-define_layer(9);
-define_layer(10);
+void kbfun_layer_sticky(void) {
+  uint8_t keycode = _kbfun_get_keycode();
+  layer_sticky(keycode);
+}
+void kbfun_layer_disable(void) {
+  uint8_t keycode = _kbfun_get_keycode();
+  layer_disable(keycode);
+}

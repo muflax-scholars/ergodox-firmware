@@ -19,21 +19,17 @@ class Key
 
   Functions = {
     #            	    	down                                   	up
-    "basic"      	=> [	"&kbfun_press_release",                	                        	],
-    "media"      	=> [	"&kbfun_mediakey_press_release",       	                        	],
-    "toggle"     	=> [	"&kbfun_toggle",                       	                        	],
-    "transparent"	=> [	"&kbfun_transparent",                  	                        	],
+    "basic"      	=> [	"&kbfun_press_release",                	                      	],
+    "media"      	=> [	"&kbfun_mediakey_press_release",       	                      	],
+    "toggle"     	=> [	"&kbfun_toggle",                       	                      	],
+    "transparent"	=> [	"&kbfun_transparent",                  	                      	],
     #            	    	down                                   	up
-    "punc"       	=> [	"&kbfun_layer_enable_1",               	"&kbfun_layer_disable_1"	],
-    "nav"        	=> [	"&kbfun_layer_enable_2",               	"&kbfun_layer_disable_2"	],
-    "func"       	=> [	"&kbfun_layer_enable_3",               	"&kbfun_layer_disable_3"	],
-    "latch_punc" 	=> [	"&kbfun_layer_sticky_1",               	                        	],
-    "latch_nav"  	=> [	"&kbfun_layer_sticky_2",               	                        	],
-    "latch_func" 	=> [	"&kbfun_layer_sticky_3",               	                        	],
+    "layer"      	=> [	"&kbfun_layer_enable",                 	"&kbfun_layer_disable"	],
+    "latch"      	=> [	"&kbfun_layer_sticky",                 	                      	],
     #            	    	down                                   	up
-    "shifted"    	=> [	"&kbfun_shift_press_release",          	                        	],
-    "ctrled"     	=> [	"&kbfun_control_press_release",        	                        	],
-    "capslock"   	=> [	"&kbfun_2_keys_capslock_press_release",	                        	],
+    "shifted"    	=> [	"&kbfun_shift_press_release",          	                      	],
+    "ctrled"     	=> [	"&kbfun_control_press_release",        	                      	],
+    "capslock"   	=> [	"&kbfun_2_keys_capslock_press_release",	                      	],
   }
 
   Keys = {
@@ -162,8 +158,6 @@ class Key
     "shift_r"          	=> "KEY_RightShift",
     "scroll_lock"      	=> "KEY_ScrollLock",
     #                  	
-    "MOD"              	=> "NULL",
-    #                  	
     "NULL"             	=> "NULL",
     #                  	
     "audio_mute"       	=> "MEDIAKEY_AUDIO_MUTE",
@@ -187,8 +181,11 @@ class Key
     "browser_stop"     	=> "MEDIAKEY_BROWSER_STOP",
     "browser_refresh"  	=> "MEDIAKEY_BROWSER_REFRESH",
     "browser_bookmarks"	=> "MEDIAKEY_BROWSER_BOOKMARKS",
-
   }
+
+  Layers.each.with_index do |layer, i|
+    Keys["#{layer}"] = "#{i}"
+  end
 
   def initialize layers
     @layers = layers.map do |key, type|
@@ -251,125 +248,125 @@ HEADER
 end
 
 keys = [
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	
-  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# dummy key
-  #  	            	          	      	    	       	      	         	    	      	    	    	  	
-  #  	left hand   	          	      	    	       	      	         	    	      	    	    	  	
-  #  	number      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	0           	          	}, %w{	f11 	       	}, %w{	f11      	    	}, %w{	f11 	    	},	# 1.5
-  %w{	1           	          	}, %w{	f1  	       	}, %w{	f1       	    	}, %w{	f1  	    	},
-  %w{	2           	          	}, %w{	f2  	       	}, %w{	f2       	    	}, %w{	f2  	    	},
-  %w{	3           	          	}, %w{	f3  	       	}, %w{	f3       	    	}, %w{	f3  	    	},
-  %w{	4           	          	}, %w{	f4  	       	}, %w{	f4       	    	}, %w{	f4  	    	},
-  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},
-  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
-  #  	top         	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},	# 1.5
-  %w{	x           	          	}, %w{	~   	shifted	}, %w{	escape   	    	}, %w{	    	    	},
-  %w{	v           	          	}, %w{	[   	       	}, %w{	backspace	    	}, %w{	    	    	},
-  %w{	l           	          	}, %w{	'   	       	}, %w{	enter    	    	}, %w{	    	    	},
-  %w{	c           	          	}, %w{	<   	shifted	}, %w{	delete   	    	}, %w{	    	    	},
-  %w{	w           	          	}, %w{	\\  	       	}, %w{	insert   	    	}, %w{	    	    	},
-  %w{	tab         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  #  	home        	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  %w{	u           	          	}, %w{	,   	       	}, %w{	left     	    	}, %w{	f1  	    	},
-  %w{	i           	          	}, %w{	\{  	shifted	}, %w{	up       	    	}, %w{	f1  	    	},
-  %w{	a           	          	}, %w{	?   	shifted	}, %w{	down     	    	}, %w{	f1  	    	},
-  %w{	e           	          	}, %w{	!   	shifted	}, %w{	right    	    	}, %w{	f1  	    	},
-  %w{	o           	          	}, %w{	(   	shifted	}, %w{	tab      	    	}, %w{	f1  	    	},
-  #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	shift_l     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  %w{	%           	shifted   	}, %w{	`   	       	}, %w{	home     	    	}, %w{	    	    	},
-  %w{	*           	shifted   	}, %w{	^   	shifted	}, %w{	page_up  	    	}, %w{	    	    	},
-  %w{	:           	shifted   	}, %w{	|   	shifted	}, %w{	page_down	    	}, %w{	    	    	},
-  %w{	p           	          	}, %w{	-   	       	}, %w{	end      	    	}, %w{	    	    	},
-  %w{	z           	          	}, %w{	@   	shifted	}, %w{	         	    	}, %w{	    	    	},
-  %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	win         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	scroll_lock 	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	MOD         	func      	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	space       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	control     	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  #  	            	          	      	    	       	      	         	    	      	    	    	  	
-  #  	right hand  	          	      	    	       	      	         	    	      	    	    	  	
-  #  	            	          	      	    	       	      	         	    	      	    	    	  	
-  #  	number      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	5           	          	}, %w{	f5  	       	}, %w{	f5       	    	}, %w{	f5  	    	},	# 1.5
-  %w{	6           	          	}, %w{	f6  	       	}, %w{	f6       	    	}, %w{	f6  	    	},
-  %w{	7           	          	}, %w{	f7  	       	}, %w{	f7       	    	}, %w{	f7  	    	},
-  %w{	8           	          	}, %w{	f8  	       	}, %w{	f8       	    	}, %w{	f8  	    	},
-  %w{	9           	          	}, %w{	f9  	       	}, %w{	f9       	    	}, %w{	f9  	    	},
-  %w{	0           	          	}, %w{	f10 	       	}, %w{	f10      	    	}, %w{	f10 	    	},
-  %w{	0           	          	}, %w{	f12 	       	}, %w{	f12      	    	}, %w{	f12 	    	},
-  #  	top         	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	            	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  %w{	k           	          	}, %w{	=   	       	}, %w{	9        	    	}, %w{	    	    	},
-  %w{	h           	          	}, %w{	>   	shifted	}, %w{	5        	    	}, %w{	    	    	},
-  %w{	g           	          	}, %w{	"   	shifted	}, %w{	6        	    	}, %w{	    	    	},
-  %w{	f           	          	}, %w{	]   	       	}, %w{	7        	    	}, %w{	    	    	},
-  %w{	q           	          	}, %w{	`   	       	}, %w{	8        	    	}, %w{	    	    	},
-  %w{	q           	          	}, %w{	`   	       	}, %w{	8        	    	}, %w{	    	    	},	# 1.5
-  #  	home        	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	s           	          	}, %w{	)   	shifted	}, %w{	0        	    	}, %w{	    	    	},
-  %w{	n           	          	}, %w{	_   	shifted	}, %w{	1        	    	}, %w{	    	    	},
-  %w{	r           	          	}, %w{	/   	       	}, %w{	2        	    	}, %w{	    	    	},
-  %w{	t           	          	}, %w{	\}  	shifted	}, %w{	3        	    	}, %w{	    	    	},
-  %w{	d           	          	}, %w{	.   	       	}, %w{	4        	    	}, %w{	    	    	},
-  %w{	umlaut      	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  #  	bottom      	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	enter       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  %w{	b           	          	}, %w{	+   	shifted	}, %w{	9        	    	}, %w{	    	    	},
-  %w{	m           	          	}, %w{	$   	shifted	}, %w{	5        	    	}, %w{	    	    	},
-  %w{	j           	          	}, %w{	&   	shifted	}, %w{	6        	    	}, %w{	    	    	},
-  %w{	y           	          	}, %w{	#   	shifted	}, %w{	7        	    	}, %w{	    	    	},
-  %w{	;           	          	}, %w{	^   	shifted	}, %w{	8        	    	}, %w{	    	    	},
-  %w{	shift_r     	capslock  	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},	# 1.5
-  #  	underbottom 	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	MOD         	nav       	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	left        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	up          	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	down        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	right       	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  #  	thumb-top   	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	MOD         	punc      	}, %w{	    	       	}, %w{	MOD      	func	}, %w{	    	    	},
-  %w{	MOD         	nav       	}, %w{	MOD 	func   	}, %w{	         	    	}, %w{	    	    	},
-  #  	thumb-double	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	MOD         	latch_punc	}, %w{	MOD 	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
-  #  	thumb-home  	          	      	    	       	      	         	    	      	    	    	  	
-  #  	letter      	type      	      	punc	type   	      	nav      	type	      	func	type	  	
-  %w{	menu        	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	alt         	          	}, %w{	    	       	}, %w{	         	    	}, %w{	    	    	},
-  %w{	MOD         	latch_punc	}, %w{	MOD 	punc   	}, %w{	NULL     	    	}, %w{	NULL	    	},
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	
+  %w{	            	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# dummy key
+  #  	            	        	      	    	       	      	         	     	      	    	    	  	
+  #  	left hand   	        	      	    	       	      	         	     	      	    	    	  	
+  #  	number      	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	0           	        	}, %w{	f11 	       	}, %w{	f11      	     	}, %w{	f11 	    	},	# 1.5
+  %w{	1           	        	}, %w{	f1  	       	}, %w{	f1       	     	}, %w{	f1  	    	},
+  %w{	2           	        	}, %w{	f2  	       	}, %w{	f2       	     	}, %w{	f2  	    	},
+  %w{	3           	        	}, %w{	f3  	       	}, %w{	f3       	     	}, %w{	f3  	    	},
+  %w{	4           	        	}, %w{	f4  	       	}, %w{	f4       	     	}, %w{	f4  	    	},
+  %w{	5           	        	}, %w{	f5  	       	}, %w{	f5       	     	}, %w{	f5  	    	},
+  %w{	6           	        	}, %w{	f6  	       	}, %w{	f6       	     	}, %w{	f6  	    	},
+  #  	top         	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	x           	        	}, %w{	~   	shifted	}, %w{	escape   	     	}, %w{	    	    	},	# 1.5
+  %w{	x           	        	}, %w{	~   	shifted	}, %w{	escape   	     	}, %w{	    	    	},
+  %w{	v           	        	}, %w{	[   	       	}, %w{	backspace	     	}, %w{	    	    	},
+  %w{	l           	        	}, %w{	'   	       	}, %w{	enter    	     	}, %w{	    	    	},
+  %w{	c           	        	}, %w{	<   	shifted	}, %w{	delete   	     	}, %w{	    	    	},
+  %w{	w           	        	}, %w{	\\  	       	}, %w{	insert   	     	}, %w{	    	    	},
+  %w{	tab         	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  #  	home        	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	umlaut      	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  %w{	u           	        	}, %w{	,   	       	}, %w{	left     	     	}, %w{	f1  	    	},
+  %w{	i           	        	}, %w{	\{  	shifted	}, %w{	up       	     	}, %w{	f1  	    	},
+  %w{	a           	        	}, %w{	?   	shifted	}, %w{	down     	     	}, %w{	f1  	    	},
+  %w{	e           	        	}, %w{	!   	shifted	}, %w{	right    	     	}, %w{	f1  	    	},
+  %w{	o           	        	}, %w{	(   	shifted	}, %w{	tab      	     	}, %w{	f1  	    	},
+  #  	bottom      	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	shift_l     	capslock	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  %w{	%           	shifted 	}, %w{	`   	       	}, %w{	home     	     	}, %w{	    	    	},
+  %w{	*           	shifted 	}, %w{	^   	shifted	}, %w{	page_up  	     	}, %w{	    	    	},
+  %w{	:           	shifted 	}, %w{	|   	shifted	}, %w{	page_down	     	}, %w{	    	    	},
+  %w{	p           	        	}, %w{	-   	       	}, %w{	end      	     	}, %w{	    	    	},
+  %w{	z           	        	}, %w{	@   	shifted	}, %w{	         	     	}, %w{	    	    	},
+  %w{	enter       	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  #  	underbottom 	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	left        	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	up          	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	down        	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	right       	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	win         	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  #  	thumb-top   	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	scroll_lock 	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	func        	layer   	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  #  	thumb-double	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	space       	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	control     	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	alt         	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  #  	thumb-home  	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	space       	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	control     	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	alt         	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  #  	            	        	      	    	       	      	         	     	      	    	    	  	
+  #  	right hand  	        	      	    	       	      	         	     	      	    	    	  	
+  #  	            	        	      	    	       	      	         	     	      	    	    	  	
+  #  	number      	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	5           	        	}, %w{	f5  	       	}, %w{	f5       	     	}, %w{	f5  	    	},	# 1.5
+  %w{	6           	        	}, %w{	f6  	       	}, %w{	f6       	     	}, %w{	f6  	    	},
+  %w{	7           	        	}, %w{	f7  	       	}, %w{	f7       	     	}, %w{	f7  	    	},
+  %w{	8           	        	}, %w{	f8  	       	}, %w{	f8       	     	}, %w{	f8  	    	},
+  %w{	9           	        	}, %w{	f9  	       	}, %w{	f9       	     	}, %w{	f9  	    	},
+  %w{	0           	        	}, %w{	f10 	       	}, %w{	f10      	     	}, %w{	f10 	    	},
+  %w{	0           	        	}, %w{	f12 	       	}, %w{	f12      	     	}, %w{	f12 	    	},
+  #  	top         	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	            	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  %w{	k           	        	}, %w{	=   	       	}, %w{	9        	     	}, %w{	    	    	},
+  %w{	h           	        	}, %w{	>   	shifted	}, %w{	5        	     	}, %w{	    	    	},
+  %w{	g           	        	}, %w{	"   	shifted	}, %w{	6        	     	}, %w{	    	    	},
+  %w{	f           	        	}, %w{	]   	       	}, %w{	7        	     	}, %w{	    	    	},
+  %w{	q           	        	}, %w{	`   	       	}, %w{	8        	     	}, %w{	    	    	},
+  %w{	q           	        	}, %w{	`   	       	}, %w{	8        	     	}, %w{	    	    	},	# 1.5
+  #  	home        	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	s           	        	}, %w{	)   	shifted	}, %w{	0        	     	}, %w{	    	    	},
+  %w{	n           	        	}, %w{	_   	shifted	}, %w{	1        	     	}, %w{	    	    	},
+  %w{	r           	        	}, %w{	/   	       	}, %w{	2        	     	}, %w{	    	    	},
+  %w{	t           	        	}, %w{	\}  	shifted	}, %w{	3        	     	}, %w{	    	    	},
+  %w{	d           	        	}, %w{	.   	       	}, %w{	4        	     	}, %w{	    	    	},
+  %w{	umlaut      	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  #  	bottom      	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	enter       	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  %w{	b           	        	}, %w{	+   	shifted	}, %w{	9        	     	}, %w{	    	    	},
+  %w{	m           	        	}, %w{	$   	shifted	}, %w{	5        	     	}, %w{	    	    	},
+  %w{	j           	        	}, %w{	&   	shifted	}, %w{	6        	     	}, %w{	    	    	},
+  %w{	y           	        	}, %w{	#   	shifted	}, %w{	7        	     	}, %w{	    	    	},
+  %w{	;           	        	}, %w{	^   	shifted	}, %w{	8        	     	}, %w{	    	    	},
+  %w{	shift_r     	capslock	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},	# 1.5
+  #  	underbottom 	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	nav         	layer   	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	left        	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	up          	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	down        	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	right       	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  #  	thumb-top   	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	punc        	layer   	}, %w{	    	       	}, %w{	func     	layer	}, %w{	    	    	},
+  %w{	nav         	layer   	}, %w{	func	layer  	}, %w{	         	     	}, %w{	    	    	},
+  #  	thumb-double	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	menu        	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	alt         	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	punc        	latch   	}, %w{	punc	layer  	}, %w{	NULL     	     	}, %w{	NULL	    	},
+  #  	thumb-home  	        	      	    	       	      	         	     	      	    	    	  	
+  #  	letter      	type    	      	punc	type   	      	nav      	type 	      	func	type	  	
+  %w{	menu        	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	alt         	        	}, %w{	    	       	}, %w{	         	     	}, %w{	    	    	},
+  %w{	punc        	latch   	}, %w{	punc	layer  	}, %w{	NULL     	     	}, %w{	NULL	    	},
 
 ].each_slice(Key::Layers.size).map do |layers|
   Key.new layers
