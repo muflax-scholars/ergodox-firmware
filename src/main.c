@@ -51,13 +51,8 @@ bool    main_arg_trans_key_pressed;
 int main(void) {
   kb_init(); // does controller initialization too
 
-  kb_led_state_power_on();
-
   usb_init();
   while (!usb_configured());
-  kb_led_delay_usb_init();  // give the OS time to load drivers, etc.
-
-  kb_led_state_ready();
 
   for (;;) {
     // swap `main_kb_is_pressed` and `main_kb_was_pressed`, then update
@@ -106,13 +101,6 @@ int main(void) {
     usb_keyboard_send();
     usb_extra_consumer_send();
     _delay_ms(MAKEFILE_DEBOUNCE_TIME);
-
-    // update LEDs
-    if (keyboard_leds & (1<<0))	{ kb_led_num_on();    	} else { kb_led_num_off();    	}
-    if (keyboard_leds & (1<<1))	{ kb_led_caps_on();   	} else { kb_led_caps_off();   	}
-    if (keyboard_leds & (1<<2))	{ kb_led_scroll_on(); 	} else { kb_led_scroll_off(); 	}
-    if (keyboard_leds & (1<<3))	{ kb_led_compose_on();	} else { kb_led_compose_off();	}
-    if (keyboard_leds & (1<<4))	{ kb_led_kana_on();   	} else { kb_led_kana_off();   	}
   }
 
   return 0;
