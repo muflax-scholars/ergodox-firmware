@@ -151,41 +151,56 @@ struct layer_stack {
 struct layer_stack	layers_stack[MAX_ACTIVE_LAYERS];
 uint8_t           	layers_head = 0;
 uint8_t           	layers_ids_in_use[MAX_ACTIVE_LAYERS] = {true};
+uint8_t           	layer_ids[1 + KB_LAYERS];
 
 // ----------------------------------------------------------------------------
 
 // return the highest active layer
 uint8_t main_layers_top_layer() {
   return layers_stack[layers_head].layer;
+
+  // return layers_top;
 }
 
 // return if highest active layer is sticky
 uint8_t main_layers_top_sticky() {
   return layers_stack[layers_head].sticky;
+
+  // return layers[layers_top].sticky;
 }
 
 // disable the highest active layer
 void main_layers_disable_top() {
+  // TODO remove
   main_layers_pop_id(layers_head);
+
+  main_layers_disable(layers_top);
 }
 
+// enable a layer
+void main_layers_enable(uint8_t layer, uint8_t sticky) {
+  // TODO remove
+  layer_ids[layer] = main_layers_push(layer, sticky);
 
+  // TODO
+  if (layer > layers_top) {
+    layers_top = layer;
+  }
+}
 
+// disable a layer
+void main_layers_disable(uint8_t layer) {
+  // TODO remove
+  main_layers_pop_id(layer_ids[layer]);
+  layer_ids[layer] = 0;
 
+  // TODO
+  if (layer == layers_top) {
+    // FIXME
+  }
+}
 
-
-
-
-
-
-
-// ----------------------------------------------------------------------------
-
-/*
- * Exec key
- * - Execute the keypress or keyrelease function (if it exists) of the key at
- *   the current possition.
- */
+// execute the keypress or keyrelease function (if it exists) of the key at the current possition
 void main_exec_key(void) {
   void (*key_function)(void) =
     ( (main_arg_is_pressed)
@@ -202,6 +217,16 @@ void main_exec_key(void) {
     main_layers_disable_top();
   }
 }
+
+
+
+
+
+
+
+
+
+// TODO remove all this
 
 /*
  * peek()
