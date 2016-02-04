@@ -108,58 +108,6 @@ void kbfun_2_keys_capslock_press_release(void) {
 	if (IS_PRESSED) keys_pressed++;
 }
 
-/* ----------------------------------------------------------------------------
- * numpad functions
- * ------------------------------------------------------------------------- */
-
-static uint8_t numpad_layer_id;
-
-static inline void numpad_toggle_numlock(void) {
-	_kbfun_press_release(true, KEY_LockingNumLock);
-	usb_keyboard_send();
-	_kbfun_press_release(false, KEY_LockingNumLock);
-	usb_keyboard_send();
-}
-
-/*
- * [name]
- *   Numpad on
- *
- * [description]
- *   Set the numpad to on (put the numpad layer, specified in the keymap, in an
- *   element at the top of the layer stack, and record that element's id) and
- *   toggle numlock (regardless of whether or not numlock is currently on)
- *
- * [note]
- *   Meant to be assigned (along with "numpad off") instead of a normal numlock
- *   key
- */
-void kbfun_layer_push_numpad(void) {
-	uint8_t keycode = kb_layout_get(LAYER, ROW, COL);
-	main_layers_pop_id(numpad_layer_id);
-	numpad_layer_id = main_layers_push(keycode, eStickyNone);
-	numpad_toggle_numlock();
-}
-
-/*
- * [name]
- *   Numpad off
- *
- * [description]
- *   Set the numpad to off (pop the layer element created by "numpad on" out of
- *   the stack) and toggle numlock (regardless of whether or not numlock is
- *   currently on)
- *
- * [note]
- *   Meant to be assigned (along with "numpad on") instead of a normal numlock
- *   key
- */
-void kbfun_layer_pop_numpad(void) {
-	main_layers_pop_id(numpad_layer_id);
-	numpad_layer_id = 0;
-	numpad_toggle_numlock();
-}
-
 /*
  * [name]
  *   Media Key Press Release
