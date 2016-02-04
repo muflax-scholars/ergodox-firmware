@@ -15,7 +15,7 @@
 /*
  * Generate a normal keypress or keyrelease
  */
-void kbfun_press_release(void) {
+void kbfun_press_release() {
   if (!main_arg_trans_key_pressed) {
     main_arg_any_non_trans_key_pressed = true;
   }
@@ -33,7 +33,7 @@ void kbfun_press_release(void) {
  *  modifier key (shift, control, alt, gui) on the sticky layer instead of
  *  defining the key to be transparent for the layer.
  */
-void kbfun_press_release_preserve_sticky(void) {
+void kbfun_press_release_preserve_sticky() {
   uint8_t keycode = _kbfun_get_keycode();
   _kbfun_press_release(main_arg_is_pressed, keycode);
 }
@@ -66,21 +66,18 @@ void kbfun_transparent(void) {
  * ------------------------------------------------------------------------- */
 
 // all lower layers on a key should be secretly set/unset to enable proper layer stacking
-static void layer_enable_downwards(uint8_t layer) {
+static void layers_enable_downwards(uint8_t layer) {
   // TODO
   main_layers_enable(layer, eStickyNone);
 }
 
-static void layer_disable_downwards(uint8_t layer) {
+static void layers_disable_downwards(uint8_t layer) {
   // TODO
   main_layers_disable(layer);
 }
 
 // enable given layer
 static void layer_enable(uint8_t layer) {
-  // FIXME necessary?
-  main_layers_disable(layer);
-
   // Only the topmost layer on the stack should be in sticky once state, pop
   // the top layer if it is in sticky once state
   uint8_t topSticky = main_layers_top_sticky();
@@ -88,12 +85,12 @@ static void layer_enable(uint8_t layer) {
     main_layers_disable_top();
   }
 
-  layer_enable_downwards(layer);
+  layers_enable_downwards(layer);
 }
 
 // disable given layer
 static void layer_disable(uint8_t layer) {
-  layer_disable_downwards(layer);
+  layers_disable_downwards(layer);
 }
 
 /*
@@ -128,11 +125,10 @@ static void layer_disable(uint8_t layer) {
  *     popped if the function is invoked on a subsequent keypress.
  */
 static void layer_sticky(uint8_t layer) {
-  uint8_t topLayer  	= main_layers_top_layer();
-  uint8_t topSticky 	= main_layers_top_sticky();
+  uint8_t topLayer 	= main_layers_top_layer();
+  uint8_t topSticky	= main_layers_top_sticky();
 
   if (main_arg_is_pressed) {
-    main_layers_disable(layer);
     if (topLayer == layer) {
       if (topSticky == eStickyOnceUp) {
         main_layers_enable(layer, eStickyLock);
@@ -142,7 +138,8 @@ static void layer_sticky(uint8_t layer) {
       if (topSticky == eStickyOnceDown || topSticky == eStickyOnceUp) {
         main_layers_disable_top();
       }
-      main_layers_enable(layer, eStickyOnceDown);
+      layers_enable_downwards(layer);
+
       // this should be the only place we care about this flag being cleared
       main_arg_any_non_trans_key_pressed = false;
     }
