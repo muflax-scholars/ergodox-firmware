@@ -80,40 +80,30 @@ int main(void) {
 		//   - see the keyboard layout file ("keyboard/ergodox/layout/*.c") for
 		//     which key is assigned which function (per layer)
 		//   - see "lib/key-functions/public/*.c" for the function definitions
-		#define row          main_loop_row
-		#define col          main_loop_col
-		#define layer        main_arg_layer
-		#define is_pressed   main_arg_is_pressed
-		#define was_pressed  main_arg_was_pressed
-		for (row=0; row<KB_ROWS; row++) {
-			for (col=0; col<KB_COLUMNS; col++) {
-				is_pressed = (*main_kb_is_pressed)[row][col];
-				was_pressed = (*main_kb_was_pressed)[row][col];
+		for (int row=0; row<KB_ROWS; row++) {
+			for (int col=0; col<KB_COLUMNS; col++) {
+				main_arg_is_pressed 	= (*main_kb_is_pressed)[row][col];
+				main_arg_was_pressed	= (*main_kb_was_pressed)[row][col];
 
-				if (is_pressed != was_pressed) {
-					if (is_pressed) {
-						layer = main_layers_peek(0);
-						main_layers_pressed[row][col] = layer;
-						main_arg_trans_key_pressed = false;
+				if (main_arg_is_pressed != main_arg_was_pressed) {
+					if (main_arg_is_pressed) {
+						main_arg_layer               	= main_layers_peek(0);
+						main_layers_pressed[row][col]	= main_arg_layer;
+						main_arg_trans_key_pressed   	= false;
 					} else {
-						layer = main_layers_pressed[row][col];
-						main_arg_trans_key_pressed = main_kb_was_transparent[row][col];
+						main_arg_layer            	= main_layers_pressed[row][col];
+						main_arg_trans_key_pressed	= main_kb_was_transparent[row][col];
 					}
 
 					// set remaining vars, and "execute" key
-					main_arg_row          = row;
-					main_arg_col          = col;
-					main_arg_layer_offset = 0;
+					main_arg_row         	= row;
+					main_arg_col         	= col;
+					main_arg_layer_offset	= 0;
 					main_exec_key();
 					main_kb_was_transparent[row][col] = main_arg_trans_key_pressed;
 				}
 			}
 		}
-		#undef row
-		#undef col
-		#undef layer
-		#undef is_pressed
-		#undef was_pressed
 
 		// send the USB report (even if nothing's changed)
 		usb_keyboard_send();
@@ -138,21 +128,12 @@ int main(void) {
 
 // ----------------------------------------------------------------------------
 
-// convenience macros (for the helper functions below)
-#define  layer        main_arg_layer
-#define  row          main_arg_row
-#define  col          main_arg_col
-#define  is_pressed   main_arg_is_pressed
-#define  was_pressed  main_arg_was_pressed
-
-// ----------------------------------------------------------------------------
-
 /* ----------------------------------------------------------------------------
  * Layer Functions
  * ----------------------------------------------------------------------------
  * We keep track of which layer is foremost by placing it on a stack.  Layers
  * may appear in the stack more than once.  The base layer will always be
- * layer-0.  
+ * layer-0.
  *
  * Implemented as a fixed size stack.
  * ------------------------------------------------------------------------- */
@@ -178,9 +159,9 @@ uint8_t       layers_ids_in_use[MAX_ACTIVE_LAYERS] = {true};
  */
 void main_exec_key(void) {
 	void (*key_function)(void) =
-		( (is_pressed)
-		  ? kb_layout_press_get(layer, row, col)
-		  : kb_layout_release_get(layer, row, col) );
+		( (main_arg_is_pressed)
+		  ? kb_layout_press_get(main_arg_layer, main_arg_row, main_arg_col)
+		  : kb_layout_release_get(main_arg_layer, main_arg_row, main_arg_col) );
 
 	if (key_function)
 		(*key_function)();
@@ -291,4 +272,3 @@ uint8_t main_layers_get_offset_id(uint8_t id) {
 
 /* ----------------------------------------------------------------------------
  * ------------------------------------------------------------------------- */
-
