@@ -47,12 +47,6 @@ void   	main_layers_enable     	(uint8_t layer, uint8_t sticky);
 void   	main_layers_disable    	(uint8_t layer);
 void   	main_layers_disable_top	(void);
 
-// TODO remove all this
-uint8_t	main_layers_peek  	(uint8_t offset);
-uint8_t	main_layers_push  	(uint8_t layer, uint8_t sticky);
-void   	main_layers_pop_id	(uint8_t id);
-extern uint8_t layer_ids[1 + KB_LAYERS];
-
 
 
 

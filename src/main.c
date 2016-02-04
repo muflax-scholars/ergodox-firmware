@@ -110,8 +110,6 @@ int main(void) {
 
 // layer functions
 
-// new array version
-
 struct layer {
   bool   	active;
   uint8_t	sticky;
@@ -120,49 +118,35 @@ struct layer {
 struct layer	layers[KB_LAYERS];
 uint8_t     	layers_top = 0;
 
-// old stack version
-
-struct layer_stack {
-  uint8_t	layer;
-  uint8_t	id;
-  uint8_t	sticky;
-};
-
-struct layer_stack	layers_stack[MAX_ACTIVE_LAYERS];
-uint8_t           	layers_head = 0;
-uint8_t           	layers_ids_in_use[MAX_ACTIVE_LAYERS] = {true};
-uint8_t           	layer_ids[1 + KB_LAYERS];
-
 // ----------------------------------------------------------------------------
+
+// find highest active layer
+uint8_t _highest_active_layer(uint8_t offset) {
+  if (offset < layers_top) {
+    for (uint8_t l = layers_top - offset; l--; l>0) {
+      if (layers[l].active) { return l; }
+    }
+  }
+
+  // the base layer is always active
+  return 0;
+}
 
 // return the highest active layer
 uint8_t main_layers_top_layer() {
-  return layers_stack[layers_head].layer;
-
-  // return layers_top;
+  return layers_top;
 }
 
 // return if highest active layer is sticky
 uint8_t main_layers_top_sticky() {
-  return layers_stack[layers_head].sticky;
-
-  // return layers[layers_top].sticky;
-}
-
-// disable the highest active layer
-void main_layers_disable_top() {
-  // TODO remove
-  main_layers_pop_id(layers_head);
-
-  main_layers_disable(layers_top);
+  return layers[layers_top].sticky;
 }
 
 // enable a layer
 void main_layers_enable(uint8_t layer, uint8_t sticky) {
-  // TODO remove
-  layer_ids[layer] = main_layers_push(layer, sticky);
+  layers[layer].active = true;
+  layers[layer].sticky = sticky;
 
-  // TODO
   if (layer > layers_top) {
     layers_top = layer;
   }
@@ -170,24 +154,20 @@ void main_layers_enable(uint8_t layer, uint8_t sticky) {
 
 // disable a layer
 void main_layers_disable(uint8_t layer) {
-  // TODO remove
-  main_layers_pop_id(layer_ids[layer]);
-  layer_ids[layer] = 0;
-
-  // TODO
+  layers[layer].active = false;
   if (layer == layers_top) {
-    // FIXME
+    layers_top = _highest_active_layer(1);
   }
+}
+
+// disable the highest active layer
+void main_layers_disable_top() {
+  main_layers_disable(layers_top);
 }
 
 // return layer offset elements below the top
 uint8_t main_layers_peek(uint8_t offset) {
-  // TODO remove this
-  if (offset <= layers_head) {
-    return layers_stack[layers_head - offset].layer;
-  }
-
-  return 0; // default, or error
+  return _highest_active_layer(offset);
 }
 
 // execute the keypress or keyrelease function (if it exists) of the key at the current possition
@@ -205,68 +185,5 @@ void main_exec_key(void) {
   //  for this layer (a non-transparent key) was pressed, pop the layer
   if (main_layers_top_sticky() == eStickyOnceUp && main_arg_any_non_trans_key_pressed) {
     main_layers_disable_top();
-  }
-}
-
-
-
-
-
-
-
-
-
-// TODO remove all this
-
-/*
- * push()
- *
- * Arguments
- * - 'layer': the layer-number to push to the top of the stack
- *
- * Returns
- * - success: the id assigned to the newly added element
- * - failure: 0 (the stack was already full)
- */
-uint8_t main_layers_push(uint8_t layer, uint8_t sticky) {
-  // look for an available id
-  for (uint8_t id=1; id<MAX_ACTIVE_LAYERS; id++) {
-    // if one is found
-    if (layers_ids_in_use[id] == false) {
-      layers_ids_in_use[id]           	= true;
-      layers_head++;                  	
-      layers_stack[layers_head].layer 	= layer;
-      layers_stack[layers_head].id    	= id;
-      layers_stack[layers_head].sticky	= sticky;
-      return id;
-    }
-  }
-
-  return 0; // default, or error
-}
-
-/*
- * pop_id()
- *
- * Arguments
- * - 'id': the id of the element to pop from the stack
- */
-void main_layers_pop_id(uint8_t id) {
-  // look for the element with the id we want to pop
-  for (uint8_t element=1; element<=layers_head; element++) {
-    // if we find it
-    if (layers_stack[element].id == id) {
-      // move all layers above it down one
-      for (; element<layers_head; element++) {
-        layers_stack[element].layer	= layers_stack[element+1].layer;
-        layers_stack[element].id   	= layers_stack[element+1].id;
-      }
-      // reinitialize the topmost (now unused) slot
-      layers_stack[layers_head].layer	= 0;
-      layers_stack[layers_head].id   	= 0;
-      // record keeping
-      layers_ids_in_use[id] = false;
-      layers_head--;
-    }
   }
 }
