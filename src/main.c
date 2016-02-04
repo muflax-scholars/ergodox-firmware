@@ -43,6 +43,16 @@ bool    main_arg_was_pressed;
 bool    main_arg_any_non_trans_key_pressed;
 bool    main_arg_trans_key_pressed;
 
+// layer data
+struct layer {
+  bool   	active;
+  uint8_t	sticky;
+};
+
+struct layer	layers[KB_LAYERS];
+uint8_t     	layers_top = 0;
+
+
 // ----------------------------------------------------------------------------
 
 /*
@@ -53,6 +63,13 @@ int main(void) {
 
   usb_init();
   while (!usb_configured());
+
+  // initialize layers
+  for (uint8_t layer=0; layer < KB_LAYERS; layer++) {
+    layers[layer].active = false;
+    layers[layer].sticky = eStickyNone;
+  }
+  layers[0].active = true;
 
   for (;;) {
     // swap `main_kb_is_pressed` and `main_kb_was_pressed`, then update
@@ -106,19 +123,11 @@ int main(void) {
   return 0;
 }
 
-// ----------------------------------------------------------------------------
 
+// ----------------------------------------------------------------------------
 // layer functions
-
-struct layer {
-  bool   	active;
-  uint8_t	sticky;
-};
-
-struct layer	layers[KB_LAYERS];
-uint8_t     	layers_top = 0;
-
 // ----------------------------------------------------------------------------
+
 
 // find highest active layer
 uint8_t _highest_active_layer(uint8_t offset) {
