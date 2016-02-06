@@ -148,7 +148,14 @@ uint8_t main_layers_top_layer() {
 
 // return if highest active layer is sticky
 uint8_t main_layers_top_sticky() {
-  return layers[layers_top].sticky;
+  return main_layers_sticky(layers_top);
+}
+
+// return if layer is sticky
+uint8_t main_layers_sticky(uint8_t layer) {
+  if (layer < KB_LAYERS) {
+    return layers[layer].sticky;
+  }
 }
 
 // enable a layer
@@ -168,7 +175,11 @@ void main_layers_disable(uint8_t layer) {
   if (layer >= KB_LAYERS) { return; }
 
   // base layer stays always on
-  if (layer > 0) { layers[layer].active = false; }
+  if (layer > 0) {
+    layers[layer].active = false;
+    layers[layer].sticky = eStickyNone;
+  }
+
   if (layer >= layers_top) {
     layers_top = _highest_active_layer(1);
   }

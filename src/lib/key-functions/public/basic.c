@@ -171,16 +171,15 @@ void kbfun_layer_sticky() {
       main_arg_any_non_trans_key_pressed = false;
     }
   } else {
-    if (topLayer == layer) {
-      if (topSticky == eStickyOnceDown) {
-        // When releasing this sticky key, pop the layer always
-        main_layers_disable(layer);
-        if (!main_arg_any_non_trans_key_pressed) {
-          // If no key defined for this layer (a non-transparent key)
-          //  was pressed, push the layer again, but in the
-          //  StickyOnceUp state
-          main_layers_enable(layer, eStickyOnceUp);
-        }
+    if (main_layers_sticky(layer) == eStickyOnceDown) {
+      // When releasing this sticky key, pop the layer always
+      main_layers_disable(layer);
+
+      if (!main_arg_any_non_trans_key_pressed) {
+        // If no key defined for this layer (a non-transparent key)
+        //  was pressed, push the layer again, but in the
+        //  StickyOnceUp state
+        main_layers_enable(layer, eStickyOnceUp);
       }
     }
   }

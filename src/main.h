@@ -43,11 +43,9 @@ void	main_exec_key	(void);
 
 uint8_t	main_layers_top_layer  	(void);
 uint8_t	main_layers_top_sticky 	(void);
+uint8_t	main_layers_sticky     	(uint8_t layer);
 void   	main_layers_enable     	(uint8_t layer, uint8_t sticky);
 void   	main_layers_disable    	(uint8_t layer);
 void   	main_layers_disable_top	(void);
-
-
-
 
 #endif
