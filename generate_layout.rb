@@ -3,7 +3,7 @@
 # Copyright muflax <mail@muflax.com>, 2015
 # License: GNU GPLv3 (or later) <http://www.gnu.org/copyleft/gpl.html>
 
-require "muflax"
+# require "muflax"
 
 LayoutDir 	= "src/keyboard/ergodox/layout"
 LayoutFile	= "#{LayoutDir}/saneo-mod.c"
@@ -238,7 +238,7 @@ HEADER
     downs	= keys_to_matrix :down
     ups  	= keys_to_matrix :up
 
-    File.save(LayoutFile) do |f|
+    File.open(LayoutFile, "w+") do |f|
       f.puts header
       f.puts "const uint8_t       PROGMEM _kb_layout[KB_LAYERS][KB_ROWS][KB_COLUMNS]         = { #{keys}  };"
       f.puts "const void_funptr_t PROGMEM _kb_layout_press[KB_LAYERS][KB_ROWS][KB_COLUMNS]   = { #{downs} };"
